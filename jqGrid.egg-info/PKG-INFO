@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: jqGrid
+Version: 0.1
+Summary: Examples of jqGrid
+Home-page: https://github.com/mglacayo07
+Author: Maria Lacayo
+Author-email: mg.lacayo07@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Provides-Extra: testing
