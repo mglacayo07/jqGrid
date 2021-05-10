@@ -1,0 +1,55 @@
+
+<html py:extends="master.xhtml" py:strip="True">
+    <script>
+    var grid_name = '#jqGridUser';
+    var grid_pager= '#listPagerjqGridUser';
+    var update_url= "${tg.url('/user/loadGrid')}";
+    var load_url  = "${tg.url('/user/updateGrid')}";
+
+    var addParams = {left: 0,width: window.innerWidth-700,top: 20,height: 190,url: update_url,mtype: 'GET', closeAfterAdd: true,closeAfterEdit: true,closeAfterSearch:true};
+    var editParams = {left: 0,width: window.innerWidth-700,top: 20,height: 200,url: update_url,mtype: 'GET',closeAfterAdd: true,closeAfterEdit: true,closeAfterSearch:true,modal: true, width: "500",editfunc: function (rowid) {} };
+    var deleteParams = {left: 0,width: window.innerWidth-700,top: 20,height: 130,url: update_url,mtype: 'GET',closeAfterAdd: true,closeAfterEdit: true,closeAfterSearch:true};
+    var viewParams = {left: 0,width: window.innerWidth-700,top: 20,height: 130,url: update_url,mtype: 'GET',closeAfterAdd: true,closeAfterEdit: true,closeAfterSearch:true};
+    var searchParams = {top: 20,height: 130,width: "500",closeAfterAdd: true,closeAfterEdit: true,closeAfterSearch:true,url: update_url,modal: true};
+    var grid = jQuery(grid_name);
+
+    $(document).ready(function () {
+        grid.jqGrid({
+                url: load_url,
+                datatype: 'json',
+                mtype: 'GET',
+                colNames: ["ID","User","Email","Display Name","Created"],
+                colModel: [
+                    {name: 'user_id',index: 'user_id', align: 'center',key:true,hidden: false,width:90, editable: false,edittype: 'text',editrules: {required: true},search:true},
+                    {name: 'user_name', index: 'user_name',align: 'left',hidden: false, editable: false,width:300, edittype: 'text', editrules: {required: true}},
+                    {name: 'email_address',index: 'email_address', align: 'left',hidden: false,editable: true, edittype: 'text',editrules: {required: true}},
+                    {name: 'display_name',index: 'display_name',hidden:false,align: 'left',width:300,editable: true,edittype: 'text',editrules: {required: true}},
+                    {name: 'created',index: 'created',hidden:false,align: 'left',editable: true,edittype: 'text',editrules: {required: true}},
+                ],
+                pager: jQuery(grid_pager),
+                rowNum: 16,
+                rowList: [16, 50, 100],
+                sortname: "user_id",
+                sortorder: "asc",
+                viewrecords: true,
+                autowidth: true,
+                height: 250
+            });
+        grid.jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
+        grid.jqGrid('navGrid',grid_pager,{edit:false,add:false,del:false,delcaption:'${_('Delete')}',deltitle:'${_('Delete')}', search:true},
+                editParams,
+                addParams,
+                deleteParams,
+                searchParams,
+                viewParams);
+            });
+    $.extend($.jgrid.nav,{alerttop:1});
+    </script>
+    <body py:block="body" py:strip="True">
+
+    <table style="width:100%">
+        <table id="jqGridTicketVenus" class="scroll" cellpadding="0" cellspacing="0"></table>
+        <div id="listPagerjqGridUser" class="scroll" style="text-align:center;"></div>
+    </table>
+    </body>
+</html>
