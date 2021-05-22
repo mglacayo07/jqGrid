@@ -1,55 +1,46 @@
-
 <html py:extends="master.xhtml" py:strip="True">
-    <script>
-    var grid_name = '#jqGridUser';
-    var grid_pager= '#listPagerjqGridUser';
-    var update_url= "${tg.url('/user/loadGrid')}";
-    var load_url  = "${tg.url('/user/updateGrid')}";
+    <head py:block="head" py:strip="True">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/free-jqgrid/4.8.0/js/i18n/grid.locale-es.js"></script>
+  <script src="//cdn.jsdelivr.net/free-jqgrid/4.8.0/js/jquery.jqgrid.min.js"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/free-jqgrid/4.8.0/css/ui.jqgrid.css"></link>
 
-    var addParams = {left: 0,width: window.innerWidth-700,top: 20,height: 190,url: update_url,mtype: 'GET', closeAfterAdd: true,closeAfterEdit: true,closeAfterSearch:true};
-    var editParams = {left: 0,width: window.innerWidth-700,top: 20,height: 200,url: update_url,mtype: 'GET',closeAfterAdd: true,closeAfterEdit: true,closeAfterSearch:true,modal: true, width: "500",editfunc: function (rowid) {} };
-    var deleteParams = {left: 0,width: window.innerWidth-700,top: 20,height: 130,url: update_url,mtype: 'GET',closeAfterAdd: true,closeAfterEdit: true,closeAfterSearch:true};
-    var viewParams = {left: 0,width: window.innerWidth-700,top: 20,height: 130,url: update_url,mtype: 'GET',closeAfterAdd: true,closeAfterEdit: true,closeAfterSearch:true};
-    var searchParams = {top: 20,height: 130,width: "500",closeAfterAdd: true,closeAfterEdit: true,closeAfterSearch:true,url: update_url,modal: true};
-    var grid = jQuery(grid_name);
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"></link>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    $(document).ready(function () {
-        grid.jqGrid({
-                url: load_url,
-                datatype: 'json',
-                mtype: 'GET',
-                colNames: ["ID","User","Email","Display Name","Created"],
-                colModel: [
-                    {name: 'user_id',index: 'user_id', align: 'center',key:true,hidden: false,width:90, editable: false,edittype: 'text',editrules: {required: true},search:true},
-                    {name: 'user_name', index: 'user_name',align: 'left',hidden: false, editable: false,width:300, edittype: 'text', editrules: {required: true}},
-                    {name: 'email_address',index: 'email_address', align: 'left',hidden: false,editable: true, edittype: 'text',editrules: {required: true}},
-                    {name: 'display_name',index: 'display_name',hidden:false,align: 'left',width:300,editable: true,edittype: 'text',editrules: {required: true}},
-                    {name: 'created',index: 'created',hidden:false,align: 'left',editable: true,edittype: 'text',editrules: {required: true}},
-                ],
-                pager: jQuery(grid_pager),
-                rowNum: 16,
-                rowList: [16, 50, 100],
-                sortname: "user_id",
-                sortorder: "asc",
-                viewrecords: true,
-                autowidth: true,
-                height: 250
-            });
-        grid.jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
-        grid.jqGrid('navGrid',grid_pager,{edit:false,add:false,del:false,delcaption:'${_('Delete')}',deltitle:'${_('Delete')}', search:true},
-                editParams,
-                addParams,
-                deleteParams,
-                searchParams,
-                viewParams);
-            });
-    $.extend($.jgrid.nav,{alerttop:1});
-    </script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/redmond/jquery-ui.css" type="text/css"/>
+
+          <meta charset="utf-8" />
+        <title py:block="master_title">User jqGrid</title>
+    </head>
+
     <body py:block="body" py:strip="True">
-
-    <table style="width:100%">
-        <table id="jqGridTicketVenus" class="scroll" cellpadding="0" cellspacing="0"></table>
-        <div id="listPagerjqGridUser" class="scroll" style="text-align:center;"></div>
-    </table>
+    <div style="margin-left:20px">
+    <table id="jqGrid"></table>
+    <div id="jqGridPager"></div>
+</div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#jqGrid").jqGrid({
+                url: "http://trirand.com/blog/phpjqgrid/examples/jsonp/getjsonp.php?callback=?&amp;qwery=longorders",
+                mtype: "GET",
+				styleUI : 'Bootstrap',
+                datatype: "jsonp",
+                colModel: [
+                    { label: 'OrderID', name: 'OrderID', key: true, width: 75 },
+                    { label: 'Customer ID', name: 'CustomerID', width: 150 },
+                    { label: 'Order Date', name: 'OrderDate', width: 150 },
+                    { label: 'Freight', name: 'Freight', width: 150 },
+                    { label:'Ship Name', name: 'ShipName', width: 150 }
+                ],
+				viewrecords: true,
+                height: 250,
+                rowNum: 20,
+                pager: "#jqGridPager"
+            });
+        });
+    </script>
     </body>
 </html>

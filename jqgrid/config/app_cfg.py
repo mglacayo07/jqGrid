@@ -32,13 +32,16 @@ base_config.update_blueprint({
     'tw2.enabled': True,
 })
 
+
 # Rendering Engines Configuration
 rendering_config = {
     'renderers': ['json'],  # Enable json in expose
-    'default_renderer': 'kajiki',
+    'default_renderer': 'mako',
 }
+rendering_config['renderers'].append('mako')
 rendering_config['renderers'].append('kajiki')
 # Change this in setup.py too for i18n to work.
+
 rendering_config['templating.kajiki.strip_text'] = False
 base_config.update_blueprint(rendering_config)
 
