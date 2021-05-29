@@ -46,6 +46,7 @@ class RootController(BaseController):
     @expose('jqgrid.templates.index')
     def index(self):
         """Handle the front-page."""
+        print("INDEX")
         return dict(page='index')
 
     @expose('jqgrid.templates.login')
