@@ -87,6 +87,21 @@
         div.dialog-hidden { display:none}
         html, body { margin: 0; padding: 0;}
     </style>
+    <style>
+        .sonMenu{
+            width: 100%;
+            text-align: left;
+            padding: 3px 20px;
+            background: none;
+            color: #333;
+            border: none;
+            font-weight: 400;
+            white-space: nowrap;
+        }
+        .sonMenu:hover{
+            background: whitesmoke;
+        }
+    </style>
     <!-- Global JavaScript -->
     <script type="text/javascript">
 
@@ -109,19 +124,42 @@
             });
             $dialog.dialog('open');
         }
-        function openTab(text,url) {
-            var num_tabs = $("div#tabs ul.main1 li.main1").length + 1;
-            var mytext= text;
-            var id = "frame"+num_tabs;
-            $("div#tabs ul.main1").append("<li class='main1'><a href='#tab"+num_tabs+"'>"+mytext+"</a><span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>");
-            $("div#tabs").append("<div id='tab"+num_tabs+"'> <div class='row'><div class='col-lg-12'><div id='"+id+"' style='margin:10px'>" +
-                    "</div><div id='loader"+id+"' class='cygnus'><span style='float:left;width: 20%;'><p>Cargando ...</p>" +
-                    "</span><span style='float:right;width: 80%;'><img src=${tg.url('/img/loader.gif')}></span></div></div></div></div>");
-            var $head = $("#"+id).contents().find("head");
-            var ur="${tg.url('/css/theme/jquery-ui1.css')}";
-            $head.append($("<link/>", { rel: "stylesheet", href:ur, type: "text/css" }));
-            $("div#tabs").tabs("refresh").tabs('option', 'active', num_tabs - 1);
+
+        function openTab(text, url) {
+                var num_tabs = $("div#tabs ul.main1 li.main1").length + 1;
+                var mytext = text;
+                var id = "frame" + num_tabs;
+
+                $("div#tabs ul.main1").append(
+                        "<li class='main1' name='" + mytext + "' id='" + mytext + "'><a href='#tab" + num_tabs + "'>" + mytext + "</a><span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>"
+                );
+                $("div#tabs").append(
+                        "<div id='tab" + num_tabs + "' style='height:560px;' class='sun-panel'> <div class='row'><div class='col-lg-12'><div id='" + id + "' style='margin:10px'><div id='loader" + id + "' style='height:500px;' class='block_content'><br><br><br><br><br><br><br><br><span style='float:right;width: 50%;'><img style='width:84px; length:84px;' src=${tg.url('/img/loader.gif')}></span></div></div></div></div></div>"
+                );
+                var $head = $("#" + id).contents().find("head");
+
+                var ur = "${tg.url('/css/theme/jquery-ui1.css')}";
+                $head.append($("<link/>",
+                        {rel: "stylesheet", href: ur, type: "text/css"}
+                ));
+                $("div#tabs").tabs("refresh").tabs('option', 'active', num_tabs - 1);
+
+                $.ajax({
+                    url: url,
+                    error: function () {
+                        $.alert("${_('Error accessing to endpoint')}",{type:"warning"});
+                    },
+                    dataType: 'html',
+                    data: "",
+                    success: function (data, rq) {
+                        $("#loader"+id).html('');
+                        $("#"+id).html(data);
+                    },
+                    type: 'GET'
+                });
+
         }
+
         $(document).ready(function () {
             $("div#tabs").tabs();
             $( "#tabs" ).tabs().on( "click", "span.ui-icon-close", function() {
@@ -143,11 +181,7 @@ ${self.bottom_scripts()}
 
 <%def name="meta()">
     <meta charset="${response.charset}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bootstrap 3 App">
-    <meta name="author" content="Jorge Macias & Maria Lacayo">
-    <meta name="keyword" content="Sun">
-    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="author" content="Maria Lacayo">
     <meta charset="utf-8">
 </%def>
 
@@ -166,9 +200,14 @@ ${self.bottom_scripts()}
                   <li class=active><a href="#pl11" aria-expanded=&#34;true&#34;>jqGrids Examples</a></li>
               </ul>
               <div class="tab-content ui-tabs-panel ui-corner-bottom ui-widget-content">
-                      <div class="tab-pane fade in active" id="pl11" style="height:70px;padding: 10px">
-                            <button onclick="openTab('${_('Users')}','${tg.url('/user')}')" title="Installers">${_('Users')}</button>
-                      </div>
+                    <div class="dropdown">
+                      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Loading Data <span class="caret"></span></button>
+                      <ul class="dropdown-menu">
+                        <li><button class="sonMenu" onclick="openTab('${_('Data Base')}','${tg.url('/user')}')" title="Data Base">${_('Data Base')}</button></li>
+                        <li><button class="sonMenu" onclick="openTab('${_('From DB')}','${tg.url('/user')}')" title="From DB">${_('From DB')}</button></li>
+                        <li><a href="#">JavaScript</a></li>
+                      </ul>
+                    </div>
               </div>
           </td>
       </table>
