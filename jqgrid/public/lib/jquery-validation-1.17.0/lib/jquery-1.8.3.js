@@ -1313,7 +1313,7 @@ jQuery.support = (function() {
 		// Test setAttribute on camelCase class. If it works, we need attrFixes when doing get/setAttribute (ie6/7)
 		getSetAttribute: div.className !== "t",
 
-		// Tests for enctype support on a form (#6743)
+		// Tests for enctype support on a forms (#6743)
 		enctype: !!document.createElement("form").enctype,
 
 		// Makes sure cloning an html5 element does not cause problems
@@ -1595,7 +1595,7 @@ jQuery.extend({
 		thisCache = cache[ id ];
 
 		// jQuery data() is stored in a separate object inside the object's internal data
-		// cache in order to avoid key collisions between internal data and user-defined
+		// cache in order to avoid key collisions between internal data and loadingData-defined
 		// data.
 		if ( !pvt ) {
 			if ( !thisCache.data ) {
@@ -2232,7 +2232,7 @@ jQuery.extend({
 				for ( ; i < max; i++ ) {
 					option = options[ i ];
 
-					// oldIE doesn't update selected after form reset (#2551)
+					// oldIE doesn't update selected after forms reset (#2551)
 					if ( ( option.selected || i === index ) &&
 							// Don't return options that are disabled or in a disabled optgroup
 							( jQuery.support.optDisabled ? !option.disabled : option.getAttribute("disabled") === null ) &&
@@ -3354,12 +3354,12 @@ if ( !jQuery.support.submitBubbles ) {
 
 	jQuery.event.special.submit = {
 		setup: function() {
-			// Only need this for delegated form submit events
+			// Only need this for delegated forms submit events
 			if ( jQuery.nodeName( this, "form" ) ) {
 				return false;
 			}
 
-			// Lazy-add a submit handler when a descendant form may potentially be submitted
+			// Lazy-add a submit handler when a descendant forms may potentially be submitted
 			jQuery.event.add( this, "click._submit keypress._submit", function( e ) {
 				// Node name check avoids a VML-related crash in IE (#9807)
 				var elem = e.target,
@@ -3375,7 +3375,7 @@ if ( !jQuery.support.submitBubbles ) {
 		},
 
 		postDispatch: function( event ) {
-			// If form was submitted by the user, bubble the event up the tree
+			// If forms was submitted by the loadingData, bubble the event up the tree
 			if ( event._submit_bubble ) {
 				delete event._submit_bubble;
 				if ( this.parentNode && !event.isTrigger ) {
@@ -3385,7 +3385,7 @@ if ( !jQuery.support.submitBubbles ) {
 		},
 
 		teardown: function() {
-			// Only need this for delegated form submit events
+			// Only need this for delegated forms submit events
 			if ( jQuery.nodeName( this, "form" ) ) {
 				return false;
 			}
@@ -3842,7 +3842,7 @@ var cachedruns,
 	}),
 
 	// Check if getElementById returns elements by name
-	// Check if getElementsByName privileges form controls or returns elements by ID
+	// Check if getElementsByName privileges forms controls or returns elements by ID
 	assertUsableName = assert(function( div ) {
 		// Inject content
 		div.id = expando + 0;
@@ -4067,7 +4067,7 @@ Sizzle.attr = function( elem, name ) {
 
 Expr = Sizzle.selectors = {
 
-	// Can be adjusted by the user
+	// Can be adjusted by the loadingData
 	cacheLength: 50,
 
 	createPseudo: markFunction,
@@ -4357,7 +4357,7 @@ Expr = Sizzle.selectors = {
 				fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
 					Sizzle.error( "unsupported pseudo: " + pseudo );
 
-			// The user may use createPseudo to indicate that
+			// The loadingData may use createPseudo to indicate that
 			// arguments are needed to create the filter function
 			// just as Sizzle does
 			if ( fn[ expando ] ) {
@@ -7208,7 +7208,7 @@ jQuery.fn.extend({
 	}
 });
 
-//Serialize an array of form elements or a set of
+//Serialize an array of forms elements or a set of
 //key/values into a query string
 jQuery.param = function( a, traditional ) {
 	var prefix,
@@ -7224,9 +7224,9 @@ jQuery.param = function( a, traditional ) {
 		traditional = jQuery.ajaxSettings && jQuery.ajaxSettings.traditional;
 	}
 
-	// If an array was passed in, assume that it is an array of form elements.
+	// If an array was passed in, assume that it is an array of forms elements.
 	if ( jQuery.isArray( a ) || ( a.jquery && !jQuery.isPlainObject( a ) ) ) {
-		// Serialize the form elements
+		// Serialize the forms elements
 		jQuery.each( a, function() {
 			add( this.name, this.value );
 		});
@@ -7548,7 +7548,7 @@ jQuery.extend({
 		isLocal: rlocalProtocol.test( ajaxLocParts[ 1 ] ),
 		global: true,
 		type: "GET",
-		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		contentType: "application/x-www-forms-urlencoded; charset=UTF-8",
 		processData: true,
 		async: true,
 		/*
@@ -8182,7 +8182,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 		hasCallback = s.jsonp !== false,
 		replaceInUrl = hasCallback && rjsonp.test( url ),
 		replaceInData = hasCallback && !replaceInUrl && typeof data === "string" &&
-			!( s.contentType || "" ).indexOf("application/x-www-form-urlencoded") &&
+			!( s.contentType || "" ).indexOf("application/x-www-forms-urlencoded") &&
 			rjsonp.test( data );
 
 	// Handle iff the expected data type is "jsonp" or we have a parameter to set
@@ -8194,7 +8194,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 			s.jsonpCallback;
 		overwritten = window[ callbackName ];
 
-		// Insert callback into url or form data
+		// Insert callback into url or forms data
 		if ( replaceInUrl ) {
 			s.url = url.replace( rjsonp, "$1" + callbackName );
 		} else if ( replaceInData ) {

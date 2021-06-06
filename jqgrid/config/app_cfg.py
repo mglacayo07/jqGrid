@@ -57,7 +57,7 @@ base_config.update_blueprint({
     'model': jqgrid.model,
     'DBSession': jqgrid.model.DBSession,
 })
-# This tells to TurboGears how to retrieve the data for your user
+# This tells to TurboGears how to retrieve the data for your loadingData
 from tg.configuration.auth import TGAuthMetadata
 class ApplicationAuthMetadata(TGAuthMetadata):
     def __init__(self, dbsession, user_class):
@@ -86,12 +86,12 @@ class ApplicationAuthMetadata(TGAuthMetadata):
             params = parse_qs(environ['QUERY_STRING'])
             params.pop('password', None)  # Remove password in case it was there
             if user is None:
-                params['failure'] = 'user-not-found'
+                params['failure'] = 'loadingData-not-found'
             else:
                 params['login'] = identity['login']
                 params['failure'] = 'invalid-password'
 
-            # When authentication fails send user to login page.
+            # When authentication fails send loadingData to login page.
             environ['repoze.who.application'] = HTTPFound(
                 location=environ['SCRIPT_NAME'] + '?'.join(('/login', urlencode(params, True)))
             )
@@ -104,10 +104,10 @@ class ApplicationAuthMetadata(TGAuthMetadata):
         ).first()
 
     def get_groups(self, identity, userid):
-        return [g.group_name for g in identity['user'].groups]
+        return [g.group_name for g in identity['loadingData'].groups]
 
     def get_permissions(self, identity, userid):
-        return [p.permission_name for p in identity['user'].permissions]
+        return [p.permission_name for p in identity['loadingData'].permissions]
 
 # Configure the authentication backend
 base_config.update_blueprint({
@@ -125,7 +125,7 @@ base_config.update_blueprint({
     # to be redirected to on logout:
     'sa_auth.post_logout_url': '/post_logout',
     
-    # In case ApplicationAuthMetadata didn't find the user discard the whole identity.
+    # In case ApplicationAuthMetadata didn't find the loadingData discard the whole identity.
     # This might happen if logged-in users are deleted.
     'identity.allow_missing_user': False,
 
@@ -138,7 +138,7 @@ base_config.update_blueprint({
     # 'sa_auth.authenticators': [('myauth', SomeAuthenticator()],
     
     # You can add more repoze.who metadata providers to fetch
-    # user metadata.
+    # loadingData metadata.
     # Remember to set 'sa_auth.authmetadata' to None
     # to disable authmetadata and use only your own metadata providers
     # 'sa_auth.mdproviders': [('myprovider', SomeMDProvider()],

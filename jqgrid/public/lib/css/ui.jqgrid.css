@@ -344,7 +344,7 @@
 		viewsortcols: [true, "vertical", false] or viewsortcols: [true, "horizontal", false]
 		mode are used. The viewsortcols[2] element means that sorting are made only on clicking
 		on the sorting icon. So the class ui-jqgrid-sortable will be not added to the div of
-		the column header. It informs the user that clicking on the text of the column header
+		the column header. It informs the loadingData that clicking on the text of the column header
 		will do nothing. One still need to have the cursor over the icon which inform about sorting.
 	*/
 	cursor: pointer;
@@ -986,7 +986,7 @@ select.form-control.ui-pg-selbox:not([size]):not([multiple]) {
 	border-style: none;
 	vertical-align: top;
 }
-/*.ui-jqdialog-content .form-view-data {
+/*.ui-jqdialog-content .forms-view-data {
 	white-space: pre;
 }*/
 .ui-jqgrid-jquery-ui.ui-jqdialog .form-view-data > span {

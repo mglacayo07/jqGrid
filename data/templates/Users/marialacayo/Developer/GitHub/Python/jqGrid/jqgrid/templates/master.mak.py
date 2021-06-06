@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1622312501.115584
+_modified_time = 1622945856.9935439
 _enable_loop = True
 _template_filename = '/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/master.mak'
 _template_uri = '/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/master.mak'
@@ -18,9 +18,9 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        _ = context.get('_', UNDEFINED)
-        self = context.get('self', UNDEFINED)
         tg = context.get('tg', UNDEFINED)
+        self = context.get('self', UNDEFINED)
+        _ = context.get('_', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('<!DOCTYPE html>\n<html>\n<head>\n    ')
         __M_writer(escape(self.meta()))
@@ -131,20 +131,20 @@ def render_body_class(context):
 def render_main_menu(context):
     __M_caller = context.caller_stack._push_frame()
     try:
-        _ = context.get('_', UNDEFINED)
-        self = context.get('self', UNDEFINED)
         tg = context.get('tg', UNDEFINED)
+        self = context.get('self', UNDEFINED)
+        _ = context.get('_', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n  <!-- INSERT MAIN MENU -->\n<nav>\n      <table style="width: 100%"  class=" ui-tabs-panel ui-corner-bottom ui-widget-content">\n          <td>\n              <ul class="nav nav-tabs ui-widget-header">\n                  <li class=active><a href="#pl11" aria-expanded=&#34;true&#34;>jqGrids Examples</a></li>\n              </ul>\n              <div class="tab-content ui-tabs-panel ui-corner-bottom ui-widget-content">\n                    <div class="dropdown">\n                      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Loading Data <span class="caret"></span></button>\n                      <ul class="dropdown-menu">\n                        <li><button class="sonMenu" onclick="openTab(\'')
         __M_writer(escape(_('Data Base')))
         __M_writer("','")
-        __M_writer(escape(tg.url('/user')))
+        __M_writer(escape(tg.url('/dataBase')))
         __M_writer('\')" title="Data Base">')
         __M_writer(escape(_('Data Base')))
         __M_writer('</button></li>\n                        <li><button class="sonMenu" onclick="openTab(\'')
         __M_writer(escape(_('From DB')))
         __M_writer("','")
-        __M_writer(escape(tg.url('/user')))
+        __M_writer(escape(tg.url('/dataBase')))
         __M_writer('\')" title="From DB">')
         __M_writer(escape(_('From DB')))
         __M_writer('</button></li>\n                        <li><a href="#">JavaScript</a></li>\n                      </ul>\n                    </div>\n              </div>\n          </td>\n      </table>\n</nav>\n      <div id="tabs">\n          <ul class="nav nav-tabs ui-widget-header main1">\n            <li class="main1"><a href="#tabs-1" >Main</a></li>\n          </ul>\n          <div id="tabs-1" align="center">\n            ')
@@ -158,8 +158,8 @@ def render_main_menu(context):
 def render_content_wrapper(context):
     __M_caller = context.caller_stack._push_frame()
     try:
-        self = context.get('self', UNDEFINED)
         tg = context.get('tg', UNDEFINED)
+        self = context.get('self', UNDEFINED)
         str = context.get('str', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n  ')

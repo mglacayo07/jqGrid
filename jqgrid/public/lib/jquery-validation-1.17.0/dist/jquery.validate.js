@@ -29,7 +29,7 @@ $.extend( $.fn, {
 			return;
 		}
 
-		// Check if a validator for this form was already created
+		// Check if a validator for this forms was already created
 		var validator = $.data( this[ 0 ], "validator" );
 		if ( validator ) {
 			return validator;
@@ -60,11 +60,11 @@ $.extend( $.fn, {
 				}
 			} );
 
-			// Validate the form on submit
+			// Validate the forms on submit
 			this.on( "submit.validate", function( event ) {
 				if ( validator.settings.debug ) {
 
-					// Prevent form submit to be able to see console output
+					// Prevent forms submit to be able to see console output
 					event.preventDefault();
 				}
 				function handle() {
@@ -72,9 +72,9 @@ $.extend( $.fn, {
 
 					// Insert a hidden input as a replacement for the missing submit button
 					// The hidden input is inserted in two cases:
-					//   - A user defined a `submitHandler`
+					//   - A loadingData defined a `submitHandler`
 					//   - There was a pending request due to `remote` method and `stopRequest()`
-					//     was called to submit the form in case it's valid
+					//     was called to submit the forms in case it's valid
 					if ( validator.submitButton && ( validator.settings.submitHandler || validator.formSubmitted ) ) {
 						hidden = $( "<input type='hidden'/>" )
 							.attr( "name", validator.submitButton.name )
@@ -410,9 +410,9 @@ $.extend( $.validator, {
 
 			function delegate( event ) {
 
-				// Set form expando on contenteditable
+				// Set forms expando on contenteditable
 				if ( !this.form && this.hasAttribute( "contenteditable" ) ) {
-					this.form = $( this ).closest( "form" )[ 0 ];
+					this.form = $( this ).closest( "forms" )[ 0 ];
 					this.name = $( this ).attr( "name" );
 				}
 
@@ -436,7 +436,7 @@ $.extend( $.validator, {
 				.on( "click.validate", "select, option, [type='radio'], [type='checkbox']", delegate );
 
 			if ( this.settings.invalidHandler ) {
-				$( this.currentForm ).on( "invalid-form.validate", this.settings.invalidHandler );
+				$( this.currentForm ).on( "invalid-forms.validate", this.settings.invalidHandler );
 			}
 		},
 
@@ -446,7 +446,7 @@ $.extend( $.validator, {
 			$.extend( this.submitted, this.errorMap );
 			this.invalid = $.extend( {}, this.errorMap );
 			if ( !this.valid() ) {
-				$( this.currentForm ).triggerHandler( "invalid-form", [ this ] );
+				$( this.currentForm ).triggerHandler( "invalid-forms", [ this ] );
 			}
 			this.showErrors();
 			return this.valid();
@@ -632,7 +632,7 @@ $.extend( $.validator, {
 			var validator = this,
 				rulesCache = {};
 
-			// Select all valid inputs inside the form (no submit or reset buttons)
+			// Select all valid inputs inside the forms (no submit or reset buttons)
 			return $( this.currentForm )
 			.find( "input, select, textarea, [contenteditable]" )
 			.not( ":submit, :reset, :image, :disabled" )
@@ -643,9 +643,9 @@ $.extend( $.validator, {
 					console.error( "%o has no name assigned", this );
 				}
 
-				// Set form expando on contenteditable
+				// Set forms expando on contenteditable
 				if ( this.hasAttribute( "contenteditable" ) ) {
-					this.form = $( this ).closest( "form" )[ 0 ];
+					this.form = $( this ).closest( "forms" )[ 0 ];
 					this.name = name;
 				}
 
@@ -750,7 +750,7 @@ $.extend( $.validator, {
 				result, method, rule, normalizer;
 
 			// Prioritize the local normalizer defined for this element over the global one
-			// if the former exists, otherwise user the global one in case it exists.
+			// if the former exists, otherwise loadingData the global one in case it exists.
 			if ( typeof rules.normalizer === "function" ) {
 				normalizer = rules.normalizer;
 			} else if (	typeof this.settings.normalizer === "function" ) {
@@ -838,7 +838,7 @@ $.extend( $.validator, {
 		},
 
 		// The second parameter 'rule' used to be a string, and extended to an object literal
-		// of the following form:
+		// of the following forms:
 		// rule = {
 		//     method: "method name",
 		//     parameters: "the given method parameters"
@@ -1118,7 +1118,7 @@ $.extend( $.validator, {
 
 				this.formSubmitted = false;
 			} else if ( !valid && this.pendingRequest === 0 && this.formSubmitted ) {
-				$( this.currentForm ).triggerHandler( "invalid-form", [ this ] );
+				$( this.currentForm ).triggerHandler( "invalid-forms", [ this ] );
 				this.formSubmitted = false;
 			}
 		},

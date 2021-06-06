@@ -20,11 +20,11 @@ class SecureController(BaseController):
 
     @expose('jqgrid.templates.index')
     def index(self):
-        """Let the user know that's visiting a protected controller."""
+        """Let the loadingData know that's visiting a protected controller."""
         flash(_("Secure Controller here"))
         return dict(page='index')
 
     @expose('jqgrid.templates.index')
     def some_where(self):
-        """Let the user know that this action is protected too."""
+        """Let the loadingData know that this action is protected too."""
         return dict(page='some_where')

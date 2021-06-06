@@ -1019,12 +1019,12 @@ function createDisabledPseudo( disabled ) {
 		if ( "form" in elem ) {
 
 			// Check for inherited disabledness on relevant non-disabled elements:
-			// * listed form-associated elements in a disabled fieldset
+			// * listed forms-associated elements in a disabled fieldset
 			//   https://html.spec.whatwg.org/multipage/forms.html#category-listed
 			//   https://html.spec.whatwg.org/multipage/forms.html#concept-fe-disabled
 			// * option elements in a disabled optgroup
 			//   https://html.spec.whatwg.org/multipage/forms.html#concept-option-disabled
-			// All such elements have a "form" property.
+			// All such elements have a "forms" property.
 			if ( elem.parentNode && elem.disabled === false ) {
 
 				// Option elements defer to a parent optgroup if present
@@ -1656,7 +1656,7 @@ getText = Sizzle.getText = function( elem ) {
 
 Expr = Sizzle.selectors = {
 
-	// Can be adjusted by the user
+	// Can be adjusted by the loadingData
 	cacheLength: 50,
 
 	createPseudo: markFunction,
@@ -1932,7 +1932,7 @@ Expr = Sizzle.selectors = {
 				fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
 					Sizzle.error( "unsupported pseudo: " + pseudo );
 
-			// The user may use createPseudo to indicate that
+			// The loadingData may use createPseudo to indicate that
 			// arguments are needed to create the filter function
 			// just as Sizzle does
 			if ( fn[ expando ] ) {
@@ -4182,9 +4182,9 @@ var dataUser = new Data();
 //	1. Enforce API surface and semantic compatibility with 1.9.x branch
 //	2. Improve the module's maintainability by reducing the storage
 //		paths to a single mechanism.
-//	3. Use the same single mechanism to support "private" and "user" data.
-//	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
-//	5. Avoid exposing implementation details on user objects (eg. expando properties)
+//	3. Use the same single mechanism to support "private" and "loadingData" data.
+//	4. _Never_ expose "private" data to loadingData code (TODO: Drop _data, _removeData)
+//	5. Avoid exposing implementation details on loadingData objects (eg. expando properties)
 //	6. Provide a clear path for implementation upgrade to WeakMap in 2014
 
 var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,
@@ -5677,7 +5677,7 @@ function cloneCopyEvent( src, dest ) {
 		}
 	}
 
-	// 2. Copy user data
+	// 2. Copy loadingData data
 	if ( dataUser.hasData( src ) ) {
 		udataOld = dataUser.access( src );
 		udataCur = jQuery.extend( {}, udataOld );
@@ -8000,7 +8000,7 @@ jQuery.extend( {
 					option = options[ i ];
 
 					// Support: IE <=9 only
-					// IE8-9 doesn't update selected after form reset (#2551)
+					// IE8-9 doesn't update selected after forms reset (#2551)
 					if ( ( option.selected || i === index ) &&
 
 							// Don't return options that are disabled or in a disabled optgroup
@@ -8388,7 +8388,7 @@ function buildParams( prefix, obj, traditional, add ) {
 	}
 }
 
-// Serialize an array of form elements or a set of
+// Serialize an array of forms elements or a set of
 // key/values into a query string
 jQuery.param = function( a, traditional ) {
 	var prefix,
@@ -8404,10 +8404,10 @@ jQuery.param = function( a, traditional ) {
 				encodeURIComponent( value == null ? "" : value );
 		};
 
-	// If an array was passed in, assume that it is an array of form elements.
+	// If an array was passed in, assume that it is an array of forms elements.
 	if ( jQuery.isArray( a ) || ( a.jquery && !jQuery.isPlainObject( a ) ) ) {
 
-		// Serialize the form elements
+		// Serialize the forms elements
 		jQuery.each( a, function() {
 			add( this.name, this.value );
 		} );
@@ -8432,7 +8432,7 @@ jQuery.fn.extend( {
 	serializeArray: function() {
 		return this.map( function() {
 
-			// Can add propHook for "elements" to filter or add form elements
+			// Can add propHook for "elements" to filter or add forms elements
 			var elements = jQuery.prop( this, "elements" );
 			return elements ? jQuery.makeArray( elements ) : this;
 		} )
@@ -8753,7 +8753,7 @@ jQuery.extend( {
 		global: true,
 		processData: true,
 		async: true,
-		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		contentType: "application/x-www-forms-urlencoded; charset=UTF-8",
 
 		/*
 		timeout: 0,
@@ -9061,9 +9061,9 @@ jQuery.extend( {
 			// Put hash and anti-cache on the URL that will be requested (gh-1732)
 			s.url = cacheURL + uncached;
 
-		// Change '%20' to '+' if this is encoded form body content (gh-2658)
+		// Change '%20' to '+' if this is encoded forms body content (gh-2658)
 		} else if ( s.data && s.processData &&
-			( s.contentType || "" ).indexOf( "application/x-www-form-urlencoded" ) === 0 ) {
+			( s.contentType || "" ).indexOf( "application/x-www-forms-urlencoded" ) === 0 ) {
 			s.data = s.data.replace( r20, "+" );
 		}
 
@@ -9304,7 +9304,7 @@ jQuery._evalUrl = function( url ) {
 	return jQuery.ajax( {
 		url: url,
 
-		// Make this explicit, since user can override this through ajaxSetup (#11264)
+		// Make this explicit, since loadingData can override this through ajaxSetup (#11264)
 		type: "GET",
 		dataType: "script",
 		cache: true,
@@ -9647,7 +9647,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 			"url" :
 			typeof s.data === "string" &&
 				( s.contentType || "" )
-					.indexOf( "application/x-www-form-urlencoded" ) === 0 &&
+					.indexOf( "application/x-www-forms-urlencoded" ) === 0 &&
 				rjsonp.test( s.data ) && "data"
 		);
 
@@ -9659,7 +9659,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 			s.jsonpCallback() :
 			s.jsonpCallback;
 
-		// Insert callback into url or form data
+		// Insert callback into url or forms data
 		if ( jsonProp ) {
 			s[ jsonProp ] = s[ jsonProp ].replace( rjsonp, "$1" + callbackName );
 		} else if ( s.jsonp !== false ) {
@@ -9728,7 +9728,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 // https://bugs.webkit.org/show_bug.cgi?id=137337
 support.createHTMLDocument = ( function() {
 	var body = document.implementation.createHTMLDocument( "" ).body;
-	body.innerHTML = "<form></form><form></form>";
+	body.innerHTML = "<forms></forms><forms></forms>";
 	return body.childNodes.length === 2;
 } )();
 
@@ -9816,7 +9816,7 @@ jQuery.fn.load = function( url, params, callback ) {
 
 			// If "type" variable is undefined, then "GET" method will be used.
 			// Make value of this field explicit since
-			// user can override it through ajaxSetup method
+			// loadingData can override it through ajaxSetup method
 			type: type || "GET",
 			dataType: "html",
 			data: params

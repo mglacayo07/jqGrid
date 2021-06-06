@@ -25,6 +25,9 @@ def whoami():
 # Import commonly used helpers from WebHelpers2 and TG
 from tg.util.html import script_json_encode
 
+def url():
+    return "http://127.0.0.1:8080/"
+
 try:
     from webhelpers2 import date, html, number, misc, text
 except SyntaxError:

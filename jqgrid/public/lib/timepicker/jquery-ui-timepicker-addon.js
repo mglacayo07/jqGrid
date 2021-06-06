@@ -935,7 +935,7 @@
 			/*
 			* remove following lines to force every changes in date picker to change the input value
 			* Bug descriptions: when an input field has a default value, and click on the field to pop up the date picker.
-			* If the user manually empty the value in the input field, the date picker will never change selected value.
+			* If the loadingData manually empty the value in the input field, the date picker will never change selected value.
 			*/
 			//if (dp_inst.lastVal !== undefined && (dp_inst.lastVal.length > 0 && this.$input.val().length === 0)) {
 			//	return;
@@ -1744,7 +1744,7 @@
 			else if (tp_inst.$input.get(0).tagName !== 'INPUT' && tp_inst.$altInput) {
 				/**
 				 * in case the datetimepicker has been applied to a non-input tag for inline UI,
-				 * and the user has not configured the plugin to display only time in altInput,
+				 * and the loadingData has not configured the plugin to display only time in altInput,
 				 * pick current date time from the altInput (and hope for the best, for now, until "ER1" is applied)
 				 *
 				 * @todo ER1. Since altInput can have a totally difference format, convert it to standard format by reading input format from "altFormat" and "altTimeFormat" option values
@@ -2084,7 +2084,7 @@
 			return 0;
 		}
 
-		if (!/^(\-|\+)\d{4}$/.test(normalized)) { // possibly a user defined tz, so just give it back
+		if (!/^(\-|\+)\d{4}$/.test(normalized)) { // possibly a loadingData defined tz, so just give it back
 			return parseInt(tzString, 10);
 		}
 

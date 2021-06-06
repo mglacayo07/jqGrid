@@ -152,7 +152,7 @@ class jqgridDataGrabber(object):
         else:
             selectedpage = int(self.kw['page']) # 0; # get the requested page
             limit =  int(self.kw['rows']) # 50; #get how many rows we want to have into the grid
-            sidx = self.kw['sidx'] #1; #get index row - i.e. user click to sort
+            sidx = self.kw['sidx'] #1; #get index row - i.e. loadingData click to sort
             sord = self.kw['sord'] #"asc"; #// get the direction
             #print ("page:{} limit:{} sidx:{} sord:{}".format(selectedpage,limit,sidx,sord))
             operations={}

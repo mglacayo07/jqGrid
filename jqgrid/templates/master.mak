@@ -203,8 +203,8 @@ ${self.bottom_scripts()}
                     <div class="dropdown">
                       <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Loading Data <span class="caret"></span></button>
                       <ul class="dropdown-menu">
-                        <li><button class="sonMenu" onclick="openTab('${_('Data Base')}','${tg.url('/user')}')" title="Data Base">${_('Data Base')}</button></li>
-                        <li><button class="sonMenu" onclick="openTab('${_('From DB')}','${tg.url('/user')}')" title="From DB">${_('From DB')}</button></li>
+                        <li><button class="sonMenu" onclick="openTab('${_('Data Base')}','${tg.url('/dataBase')}')" title="Data Base">${_('Data Base')}</button></li>
+                        <li><button class="sonMenu" onclick="openTab('${_('From DB')}','${tg.url('/dataBase')}')" title="From DB">${_('From DB')}</button></li>
                         <li><a href="#">JavaScript</a></li>
                       </ul>
                     </div>

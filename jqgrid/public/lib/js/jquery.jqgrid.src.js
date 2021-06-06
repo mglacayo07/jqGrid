@@ -798,17 +798,17 @@
 					hr: "hidden",
 					closeButton: "btn btn-xs btn-default",
 					fmButton: "btn btn-default",
-					dataField: "form-control",
+					dataField: "forms-control",
 					viewCellLabel: "",
 					viewLabel: "control-label",
 					viewCellData: "",
-					viewData: "form-control",
+					viewData: "forms-control",
 					leftCorner: "",
 					rightCorner: "",
 					defaultCorner: ""
 				},
 				filterToolbar: {
-					dataField: "form-control"
+					dataField: "forms-control"
 				},
 				subgrid: {
 					thSubgrid: "",
@@ -837,18 +837,18 @@
 				pager: {
 					pager: "panel-footer",
 					pagerButton: "btn btn-xs",
-					pagerInput: "form-control",
-					pagerSelect: "form-control"
+					pagerInput: "forms-control",
+					pagerSelect: "forms-control"
 				},
 				navButton: "btn btn-xs",
 				searchDialog: {
-					operator: "form-control",
-					label: "form-control",
-					elem: "form-control",
-					operationGroup: "form-inline",
+					operator: "forms-control",
+					label: "forms-control",
+					elem: "forms-control",
+					operationGroup: "forms-inline",
 					addRuleButton: "btn btn-xs btn-default",
 					deleteRuleButton: "btn btn-xs btn-default",
-					operationSelect: "form-control",
+					operationSelect: "forms-control",
 					addGroupButton: "btn btn-xs btn-default",
 					deleteGroupButton: "btn btn-xs btn-default"
 				},
@@ -904,17 +904,17 @@
 					hr: "d-none",
 					closeButton: "btn btn-xs btn-outline-primary",
 					fmButton: "btn btn-outline-secondary",
-					dataField: "form-control",
+					dataField: "forms-control",
 					viewCellLabel: "",
 					viewLabel: "control-label",
 					viewCellData: "",
-					viewData: "form-control",
+					viewData: "forms-control",
 					leftCorner: "",
 					rightCorner: "",
 					defaultCorner: ""
 				},
 				filterToolbar: {
-					dataField: "form-control"
+					dataField: "forms-control"
 				},
 				subgrid: {
 					thSubgrid: "",
@@ -943,18 +943,18 @@
 				pager: {
 					pager: "card-footer",
 					pagerButton: "btn btn-xs",
-					pagerInput: "form-control",
-					pagerSelect: "form-control"
+					pagerInput: "forms-control",
+					pagerSelect: "forms-control"
 				},
 				navButton: "btn btn-xs",
 				searchDialog: {
-					operator: "form-control",
-					label: "form-control",
-					elem: "form-control",
-					operationGroup: "form-inline",
+					operator: "forms-control",
+					label: "forms-control",
+					elem: "forms-control",
+					operationGroup: "forms-inline",
 					addRuleButton: "btn btn-xs btn-default",
 					deleteRuleButton: "btn btn-xs btn-default",
-					operationSelect: "form-control",
+					operationSelect: "forms-control",
 					addGroupButton: "btn btn-xs btn-default",
 					deleteGroupButton: "btn btn-xs btn-default"
 				},
@@ -1807,7 +1807,7 @@
 				//alert("expr");
 				return undefined;
 			}
-			// !!! one should never use another form $(expr, obj) if obj could be undefined
+			// !!! one should never use another forms $(expr, obj) if obj could be undefined
 			// In the case the $(expr, obj) could be $("someString") and jQuery can
 			// parse it as array of characters ($("someString").length will be "someString".length) !!!
 			// The problem take place if expr is not string object, but object new String("someString").
@@ -2241,7 +2241,7 @@
 									// TODO: consider to apply formatter at least to process correctly
 									// default values. For example is bootean property is not defined
 									// if will be displayed by formatter:"checkbox" as false value.
-									// If the user search for the value one will process the following
+									// If the loadingData search for the value one will process the following
 									//    jQuery.jgrid.getAccessor(this,'closed')).toUpperCase() == String("FALSE").toUpperCase()
 									// which works wrong if the property "closed" is undefined.
 									fld = self._getStr(fld);
@@ -2708,7 +2708,7 @@
 		stripHtml = jgrid.stripHtml, htmlEncode = jgrid.htmlEncode, htmlDecode = jgrid.htmlDecode,
 		mergeCssClasses = jgrid.mergeCssClasses, hasOneFromClasses = jgrid.hasOneFromClasses,
 		feedback = function () {
-			// short form of $.jgrid.feedback to save usage this.p as the first parameter
+			// short forms of $.jgrid.feedback to save usage this.p as the first parameter
 			var args = $.makeArray(arguments);
 			args.unshift("");
 			args.unshift("");
@@ -3054,11 +3054,11 @@
 						cancelicon: getIcon("actions.cancel")
 					}, jgrid.actionsNav || {}),
 					formEditing: extend(true, {
-						commonIconClass: getIcon("form.common"),
-						prevIcon: getIcon("form.prev"),
-						nextIcon: getIcon("form.next"),
-						saveicon: [true, "left", getIcon("form.save")],
-						closeicon: [true, "left", getIcon("form.undo")]
+						commonIconClass: getIcon("forms.common"),
+						prevIcon: getIcon("forms.prev"),
+						nextIcon: getIcon("forms.next"),
+						saveicon: [true, "left", getIcon("forms.save")],
+						closeicon: [true, "left", getIcon("forms.undo")]
 					}, jgrid.edit || {}),
 					searching: extend(true, {
 						commonIconClass: getIcon("search.common"),
@@ -3067,15 +3067,15 @@
 						queryDialogIcon: getIcon("search.query")
 					}, jgrid.search || {}),
 					formViewing: extend(true, {
-						commonIconClass: getIcon("form.common"),
-						prevIcon: getIcon("form.prev"),
-						nextIcon: getIcon("form.next"),
-						closeicon: [true, "left", getIcon("form.cancel")]
+						commonIconClass: getIcon("forms.common"),
+						prevIcon: getIcon("forms.prev"),
+						nextIcon: getIcon("forms.next"),
+						closeicon: [true, "left", getIcon("forms.cancel")]
 					}, jgrid.view || {}),
 					formDeleting: extend(true, {
-						commonIconClass: getIcon("form.common"),
-						delicon: [true, "left", getIcon("form.del")],
-						cancelicon: [true, "left", getIcon("form.cancel")]
+						commonIconClass: getIcon("forms.common"),
+						delicon: [true, "left", getIcon("forms.del")],
+						cancelicon: [true, "left", getIcon("forms.cancel")]
 					}, jgrid.del || {})
 				},
 				pin || {}),
@@ -3839,7 +3839,7 @@
 						if (rd[idName] !== undefined) {
 							// in case of p.keyName or if there exist column with the same id name
 							// probably one should test only for rd[p.keyName] !== undefined
-							// and get rd[p.keyName] below, but the probability that the user
+							// and get rd[p.keyName] below, but the probability that the loadingData
 							// wanted to use the column rd[idName] as the rowid seemd me
 							// higher as the opposite case.
 
@@ -4111,7 +4111,7 @@
 					// TODO: Consider to allow to specify key:true property in additionalProperties
 					// in the case the item of additionalProperties should looks not like
 					// "myProp" and not like {name: "myProp", convert: function (data) {...}} used in TreeGrid,
-					// but in more common form {name: "myProp", key:true, convert: function (data) {...}}
+					// but in more common forms {name: "myProp", key:true, convert: function (data) {...}}
 
 					// prepare to read id of data items
 					// if p.keyName !== false it contains the name of the column or the nameReader functoin (jsonmap or xmlmap)
@@ -6309,7 +6309,7 @@
 			// to set some defaults of jqGrid. It's: $.jgrid.defaults, $.jgrid.search, $.jgrid.edit, $.jgrid.view, $.jgrid.del, $.jgrid.nav
 			// $.jgrid.formatter, $.jgrid.errors, $.jgrid.col
 			// Existing programs could use the objects to set either language specific settings (which are now moved under locales part)
-			// be language independent. Thus one should combine language specific settings with the user's settings and overwrite the settings
+			// be language independent. Thus one should combine language specific settings with the loadingData's settings and overwrite the settings
 			// with grid specific settings if the settings exist.
 			//
 			// For example:
@@ -6324,7 +6324,7 @@
 			//      $.jgrid.locales["en-US"].edit.addCaption = "Add Record";
 			//
 			// In the case the grid option p.loadtext = "..." need be used. If p.loadtext is not defined then $.jgrid.defaults.loadtext. If
-			// $.jgrid.defaults.loadtext is not defined explicitly by the user, then language settings will be used
+			// $.jgrid.defaults.loadtext is not defined explicitly by the loadingData, then language settings will be used
 
 			var $t = this[0];
 			if (!$t || !$t.grid || !$t.p) { return null; }
@@ -6820,7 +6820,7 @@
 			return false;
 		},
 		getRowData: function (rowid, options) {
-			// TODO: add additional parameter, which will inform whether the output data need be in formatted or unformatted form
+			// TODO: add additional parameter, which will inform whether the output data need be in formatted or unformatted forms
 			var res = {}, resall;
 			if (typeof rowid === "object") {
 				options = rowid;
@@ -6937,7 +6937,7 @@
 			return success;
 		},
 		setRowData: function (rowid, data, cssp) {
-			// TODO: add additional parameter to setRowData which inform that input data is in formatted or unformatted form
+			// TODO: add additional parameter to setRowData which inform that input data is in formatted or unformatted forms
 			var success = true;
 			this.each(function () {
 				var t = this, p = t.p, ind, cp = typeof cssp, lcdata = {};
@@ -7100,7 +7100,7 @@
 			});
 		},
 		addRowData: function (rowid, rdata, pos, src) {
-			// TODO: add an additional parameter, which will inform whether the input data rdata is in formatted or unformatted form
+			// TODO: add an additional parameter, which will inform whether the input data rdata is in formatted or unformatted forms
 			if ($.inArray(pos, ["first", "last", "before", "after", "afterSelected", "beforeSelected"]) < 0) { pos = "last"; }
 			var success = false, nm, row, sind, i, v, aradd, cnm, cn, data, cm, id;
 			if (rdata) {
@@ -7262,7 +7262,7 @@
 			return success;
 		},
 		footerData: function (action, data, format) {
-			// TODO: add an additional parameter, which will inform whether the input data "data" is in formatted or unformatted form
+			// TODO: add an additional parameter, which will inform whether the input data "data" is in formatted or unformatted forms
 			var success = false, res = {};
 			function isEmpty(obj) {
 				var i;
@@ -7941,7 +7941,7 @@
 			});
 		},
 		setCell: function (rowid, colName, nData, cssp, attrp, forceUpdate) {
-			// TODO: add an additional parameter, which will inform whether the input data nData is in formatted or unformatted form
+			// TODO: add an additional parameter, which will inform whether the input data nData is in formatted or unformatted forms
 			return this.each(function () {
 				var $t = this, p = $t.p, iCol = -1, colModel = p.colModel, v, i, cm, item, tr, $td, $tdi, val, rawdat = {}, id, index;
 				if (!$t.grid) { return; }
@@ -8019,7 +8019,7 @@
 			});
 		},
 		getCell: function (rowid, colName) {
-			// TODO: add an additional parameter, which will inform whether the output data should be in formatted or unformatted form
+			// TODO: add an additional parameter, which will inform whether the output data should be in formatted or unformatted forms
 			var ret = false;
 			this.each(function () {
 				var $t = this, iCol, p = $t.p, tr, $td, cm;
@@ -8045,7 +8045,7 @@
 			return ret;
 		},
 		getCol: function (colName, obj, mathopr) {
-			// TODO: add an additional parameter, which will inform whether the output data should be in formatted or unformatted form
+			// TODO: add an additional parameter, which will inform whether the output data should be in formatted or unformatted forms
 			var ret = [], val, sum = 0, min, max, v;
 			obj = typeof obj !== "boolean" ? false : obj;
 			if (mathopr === undefined) { mathopr = false; }
@@ -9114,7 +9114,7 @@
 		createModal: function (aIDs, content, o, insertSelector, posSelector, appendsel, css) {
 			var jqID = jgrid.jqID, p = this.p;
 			o = $.extend(true, {
-				resizingRightBottomIcon: base.getIconRes.call(this, "form.resizableLtr")
+				resizingRightBottomIcon: base.getIconRes.call(this, "forms.resizableLtr")
 			}, jgrid.jqModal || {},
 			p != null ? p.jqModal || {} : {},
 			o);
@@ -9146,7 +9146,7 @@
 				ahr = $("<a aria-label='Close' class='" + getGuiStyles.call(this, "dialog.closeButton", "ui-jqdialog-titlebar-close") + "'></a>")
 					.hover(function () { ahr.addClass(hoverClasses); },
 						function () { ahr.removeClass(hoverClasses); })
-					.append("<span class='" + base.getIconRes.call(this, "form.close") + "'></span>");
+					.append("<span class='" + base.getIconRes.call(this, "forms.close") + "'></span>");
 			$(mh).append(ahr);
 			// create "div.ui-jqdialog-content" which hold some HTML content (see input parameter)
 			var mc = document.createElement("div");
@@ -10528,7 +10528,7 @@
 					},
 					timeoutHnd,
 					bindings = [],
-					$tr = $("<tr></tr>", { "class": "ui-search-toolbar", role: "row form" });
+					$tr = $("<tr></tr>", { "class": "ui-search-toolbar", role: "row forms" });
 
 				if (o.loadFilterDefaults) {
 					currentFilters = parseFilter() || {};
@@ -12026,7 +12026,7 @@
 					}, 0);
 				});
 
-				// populate drop down with user provided column definitions
+				// populate drop down with loadingData provided column definitions
 				var j = 0, searchable, hidden, ignoreHiding;
 				for (i = 0; i < that.p.columns.length; i++) {
 					// but show only serchable and serchhidden = true fields
@@ -12702,7 +12702,7 @@
 	// end module jsonxml
 
 	/**
-	 * jqGrid extension for form editing Grid Data
+	 * jqGrid extension for forms editing Grid Data
 	 * Copyright (c) 2008-2014, Tony Tomov, tony@trirand.com, http://trirand.com/blog/
 	 * Copyright (c) 2014-2018, Oleg Kiriljuk, oleg.kiriljuk@ok-soft-gmbh.com
 	 * Dual licensed under the MIT and GPL licenses:
@@ -13270,7 +13270,7 @@
 								mode: mode
 							});
 						}
-						// hidden fields are included in the form
+						// hidden fields are included in the forms
 						if (cm.editrules && cm.editrules.edithidden === true) {
 							hc = false;
 						} else {
@@ -13420,7 +13420,7 @@
 					$(tre.cells).filter("td[role=gridcell]").each(function (i) {
 						var tmp;
 						nm = cm[i].name;
-						// hidden fields are included in the form
+						// hidden fields are included in the forms
 						if (nm !== "cb" && nm !== "subgrid" && nm !== "rn" && cm[i].editable === true) {
 							try {
 								tmp = $.unformat.call($t, $(this), { rowId: rowid1, colModel: cm[i] }, i);
@@ -13586,7 +13586,7 @@
 						if (postdata[oper] !== opers.addoper) {
 							postdata[idname] = postdata[gridId + "_id"];
 						} else {
-							// check to see if we have allredy this field in the form and if yes lieve it
+							// check to see if we have allredy this field in the forms and if yes lieve it
 							if (postdata[idname] === undefined) { postdata[idname] = postdata[gridId + "_id"]; }
 						}
 						delete postdata[gridId + "_id"];
@@ -13661,7 +13661,7 @@
 										var reloadGridOptions = [$.extend({}, o.reloadGridOptions || {})];
 										if (postdata[oper] === opers.addoper) {
 											//id processing
-											// user not set the id ret[2]
+											// loadingData not set the id ret[2]
 											if (!ret[2]) { ret[2] = jgrid.randId(); }
 											if (postdata[idname] == null || postdata[idname] === "_empty" || postdata[oper] === opers.addoper) {
 												postdata[idname] = ret[2];
@@ -13840,7 +13840,7 @@
 
 				var dh = isNaN(o.dataheight) ? o.dataheight : o.dataheight + "px",
 					dw = isNaN(o.datawidth) ? o.datawidth : o.datawidth + "px",
-					frm = $("<form name='FormPost' id='" + frmgrId + "' class='FormGrid' onSubmit='return false;' style='width:" + dw + ";overflow:auto;position:relative;height:" + dh + ";'></form>").data("disabled", false),
+					frm = $("<forms name='FormPost' id='" + frmgrId + "' class='FormGrid' onSubmit='return false;' style='width:" + dw + ";overflow:auto;position:relative;height:" + dh + ";'></forms>").data("disabled", false),
 					tbl = $("<table id='" + frmtborg + "' class='EditTable'><tbody></tbody></table>");
 				$(colModel).each(function () {
 					var fmto = this.formoptions;
@@ -13896,7 +13896,7 @@
 				var tms = $("<div></div>").append($("<div class='" + getGuiStyles.call($t, "dialog.body") + "'></div>").append(frm)).append(bt);
 				jgrid.createModal.call($t, ids, tms, o, p.gView, $(gboxSelector)[0]);
 				// TODO: remove the call of jgrid.bindEv and probably call of opt.custom_value from createData
-				// and place the calls here AFTER the form are placed on the HTML page
+				// and place the calls here AFTER the forms are placed on the HTML page
 				if (o.topinfo) { $(".tinfo", frmtb).show(); }
 				if (o.bottominfo) { $(".binfo", frmtb2).show(); }
 				tms = null;
@@ -13964,7 +13964,7 @@
 					zI++;
 					$("<div class='" + o.overlayClass + " jqgrid-overlay confirm' style='z-index:" + zI + ";display:none;'>&#160;</div><div class='" + getGuiStyles.call($t, "dialog.content", "confirm ui-jqconfirm") + "' style='z-index:" + (zI + 1) + "'>" + o.saveData + "<br/><br/>" + bS + bN + bC + "</div>").insertAfter(frmgr);
 					$("#sNew", themodalSelector).click(function () {
-						// if the form will be hidden at the first usage and it will be shown at the next usage
+						// if the forms will be hidden at the first usage and it will be shown at the next usage
 						// then the execution context click handler and all other functions like postIt()
 						// will contains the variables (like rowid, postdata and so on) from THE FIRST call
 						// of editGridRow. One should be very careful in the code of postIt()
@@ -13985,7 +13985,7 @@
 						return false;
 					});
 					$("#cNew", themodalSelector).click(function () {
-						// if the form will be hidden at the first usage and it will be shown at the next usage
+						// if the forms will be hidden at the first usage and it will be shown at the next usage
 						// then the execution context click handler and all other functions like postIt()
 						// will contains the variables (like o) from THE FIRST call
 						$(".confirm", themodalSelector).hide();
@@ -14157,10 +14157,10 @@
 						viewLabelClasses = getGuiStyles.call($t, "dialog.viewLabel"),
 						labelsWidth = String(o.labelswidth) + (!o.labelswidth || isNaN(o.labelswidth) ? "" : "px"),
 						tdtmpl = "<td class='" +
-							getGuiStyles.call($t, "dialog.viewCellLabel", "CaptionTD form-view-label") +
+							getGuiStyles.call($t, "dialog.viewCellLabel", "CaptionTD forms-view-label") +
 							(labelsWidth ? "' style='width:" + labelsWidth + ";" : "") +
 							"'>&#160;</td><td class='" +
-							getGuiStyles.call($t, "dialog.viewCellData", "DataTD form-view-data") +
+							getGuiStyles.call($t, "dialog.viewCellData", "DataTD forms-view-data") +
 							"'>&#160;</td>",
 						tmpl = "", fmtnum = ["integer", "number", "currency"], max1 = 0, max2 = 0, maxw, setme, viewfld;
 					for (i = 0; i < maxcols; i++) {
@@ -14187,7 +14187,7 @@
 						var cm = this;
 						nm = cm.name;
 						setme = false;
-						// hidden fields are included in the form
+						// hidden fields are included in the forms
 						if (cm.editrules && cm.editrules.edithidden === true) {
 							hc = false;
 						} else {
@@ -14282,9 +14282,9 @@
 
 				var dh = isNaN(o.dataheight) ? o.dataheight : o.dataheight + "px",
 					dw = isNaN(o.datawidth) ? o.datawidth : o.datawidth + "px",
-					frmDiv = $("<div class='" + getGuiStyles.call($t, "dialog.body") + "'><form name='FormPost' id='" + frmgrId +
-						"' class='FormGrid' style='width:" + dw + ";overflow:auto;position:relative;height:" + dh + ";'></form></div>"),
-					frm = frmDiv.children("form.FormGrid"),
+					frmDiv = $("<div class='" + getGuiStyles.call($t, "dialog.body") + "'><forms name='FormPost' id='" + frmgrId +
+						"' class='FormGrid' style='width:" + dw + ";overflow:auto;position:relative;height:" + dh + ";'></forms></div>"),
+					frm = frmDiv.children("forms.FormGrid"),
 					tbl = $("<table id='" + frmtbId +
 						"' class='EditTable'><tbody></tbody></table>");
 
@@ -15149,7 +15149,7 @@
 									$fieldi.prop("checked", $fieldi.val() === String(rowdata[i]));
 								}
 							} else {
-								// this is very slow on big table and form.
+								// this is very slow on big table and forms.
 								$field.val(isEmptyString(rowdata[i]) ? "" : rowdata[i]);
 							}
 						}
@@ -15455,7 +15455,7 @@
 							// stop next grouping header of the same lever are found
 							if (itemGroupingLevel <= num) { break; }
 							if (itemGroupingLevel === num + 1) {
-								// one should display subgroupes in collaped form
+								// one should display subgroupes in collaped forms
 								getGroupHeaderIcon($tr).removeClass(minusClasses).addClass(plusClasses);
 								addToHideOrShow($tr);
 							}
@@ -16854,13 +16854,13 @@
 			 * the grid. Additionally this.gh contains the COPY of p.groupHeader.groupHeaders.
 			 * It's important that startColumnName property of elements of
 			 * p.groupHeader.groupHeaders could be changed during reordering of the columns.
-			 * On the other side the user can't click Cancel button of columnChooser for
+			 * On the other side the loadingData can't click Cancel button of columnChooser for
 			 * breaking reordering. Because of that this.gh contains the COPY of
 			 * p.groupHeader.groupHeaders and the original p.groupHeader.groupHeaders will be
 			 * not changed in the reorderSelectedColumns function.
 			 *
 			 * An important implementation problem: reorderSelectedColumns function will be
-			 * called after ONE reordering of the columns. On the other side, the user can
+			 * called after ONE reordering of the columns. On the other side, the loadingData can
 			 * reorder the columns MULTIPLE TIMES before saving the new order. Thus, one
 			 * have to take in consideration not only the original order of columns in
 			 * colModel, but THE CURRENT order of the columns saved only internally in
@@ -17041,8 +17041,8 @@
 		if ($UiMultiselect.prototype._setSelected) {
 			var setSelected = $UiMultiselect.prototype._setSelected;
 			$UiMultiselect.prototype._setSelected = function (item, selected) {
-				// the method will be called if the user clicks "+" button on the item of "available" list
-				// or if the user clicks "-" button on the item of "selected" list.
+				// the method will be called if the loadingData clicks "+" button on the item of "available" list
+				// or if the loadingData clicks "-" button on the item of "selected" list.
 				// The parameter "selected" is equal true on click on the item of "selected" list
 				// and false on click on the item of "available" list.
 				var ret = setSelected.call(this, item, selected), elt = this.element,
@@ -17387,7 +17387,7 @@
 				multiselectData.grid = self;
 				if (gh) {
 					// make deep copy of groupHeaders to be able to hold changes of startColumnName,
-					// but to apply the changes only after the user click OK button (not Cancel)
+					// but to apply the changes only after the loadingData click OK button (not Cancel)
 					multiselectData.gh = $.extend(true, [], gh);
 
 					// filling the helper array inGroup. It contains

@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
 """Main Controller"""
 
-from tg import expose, flash, require, url, lurl
+from tg import expose, flash, lurl
 from tg import request, redirect, tmpl_context
-from tg.i18n import ugettext as _, lazy_ugettext as l_
+from tg.i18n import ugettext as _
 from tg.exceptions import HTTPFound
-from tg import predicates
 from jqgrid import model
 from jqgrid.controllers.secure import SecureController
-from jqgrid.model import DBSession, Group, User
+from jqgrid.model import DBSession
 from tgext.admin.tgadminconfig import BootstrapTGAdminConfig as TGAdminConfig
 from tgext.admin.controller import AdminController
 
 from jqgrid.lib.base import BaseController
 from jqgrid.controllers.error import ErrorController
 
-from jqgrid.controllers.user import UserController
+from jqgrid.controllers.loadingData.database import DataBaseController
 __all__ = ['RootController']
 
 
@@ -38,7 +37,7 @@ class RootController(BaseController):
 
     error = ErrorController()
 
-    user = UserController()
+    dataBase = DataBaseController()
 
     def _before(self, *args, **kw):
         tmpl_context.project_name = "jqgrid"
@@ -51,9 +50,9 @@ class RootController(BaseController):
 
     @expose('jqgrid.templates.login')
     def login(self, came_from=lurl('/'), failure=None, login=''):
-        """Start the user login."""
+        """Start the loadingData login."""
         if failure is not None:
-            if failure == 'user-not-found':
+            if failure == 'loadingData-not-found':
                 flash(_('User not found'), 'error')
             elif failure == 'invalid-password':
                 flash(_('Invalid Password'), 'error')
@@ -67,7 +66,7 @@ class RootController(BaseController):
     @expose()
     def post_login(self, came_from=lurl('/')):
         """
-        Redirect the user to the initially requested page on successful
+        Redirect the loadingData to the initially requested page on successful
         authentication or redirect her back to the login page if login failed.
 
         """
@@ -85,7 +84,7 @@ class RootController(BaseController):
     @expose()
     def post_logout(self, came_from=lurl('/')):
         """
-        Redirect the user to the initially requested page on logout and say
+        Redirect the loadingData to the initially requested page on logout and say
         goodbye as well.
 
         """

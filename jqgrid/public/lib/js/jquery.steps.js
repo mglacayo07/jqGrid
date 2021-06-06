@@ -1767,7 +1767,7 @@ var defaults = $.fn.steps.defaults = {
     enablePagination: true,
 
     /**
-     * Suppresses pagination if a form field is focused.
+     * Suppresses pagination if a forms field is focused.
      *
      * @property suppressPaginationOnFocus
      * @type Boolean
@@ -1888,7 +1888,7 @@ var defaults = $.fn.steps.defaults = {
 
     /**
      * Fires before the step changes and can be used to prevent step changing by returning `false`. 
-     * Very useful for form validation. 
+     * Very useful for forms validation.
      *
      * @property onStepChanging
      * @type Event
@@ -1919,7 +1919,7 @@ var defaults = $.fn.steps.defaults = {
 
     /**
      * Fires before finishing and can be used to prevent completion by returning `false`. 
-     * Very useful for form validation. 
+     * Very useful for forms validation.
      *
      * @property onFinishing
      * @type Event

@@ -27,7 +27,7 @@ class TestUser(ModelTest):
     )
 
     def test_obj_creation_username(self):
-        """The obj constructor must set the user name right"""
+        """The obj constructor must set the loadingData name right"""
         eq_(self.obj.user_name, "ignucius")
 
     def test_obj_creation_email(self):

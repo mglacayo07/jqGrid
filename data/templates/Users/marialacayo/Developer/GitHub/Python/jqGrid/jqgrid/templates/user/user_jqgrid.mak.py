@@ -7,8 +7,8 @@ __M_locals_builtin = locals
 _magic_number = 10
 _modified_time = 1622298001.69177
 _enable_loop = True
-_template_filename = '/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/user/user_jqgrid.mak'
-_template_uri = '/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/user/user_jqgrid.mak'
+_template_filename = '/jqgrid/templates/loadingData/database.mak'
+_template_uri = '/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/loadingData/database.mak'
 _source_encoding = 'utf-8'
 from markupsafe import escape_silent as escape
 _exports = []
@@ -22,9 +22,9 @@ def render_body(context,**pageargs):
         tg = context.get('tg', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('<script>\n    $(window).on("resize", function () {\n        var $grid = $("#jqGridUser"),newWidth = $grid.closest(".ui-jqgrid").parent().width();\n        $grid.jqGrid("setGridWidth", newWidth, true);\n    });\n    var grid_name = \'#jqGridUser\';\n    var grid_pager= \'#listPagerUser\';\n    var update_url= "')
-        __M_writer(escape(tg.url('/user/updateGrid')))
+        __M_writer(escape(tg.url('/loadingData/updateGrid')))
         __M_writer('";\n    var load_url  = "')
-        __M_writer(escape(tg.url('/user/loadGrid')))
+        __M_writer(escape(tg.url('/loadingData/loadGrid')))
         __M_writer('";\n\n    var addParams = {left: 0,width: window.innerWidth-700,top: 20,height: 190,url: update_url,mtype: \'GET\', closeAfterAdd: true,closeAfterEdit: true,closeAfterSearch:true};\n    var editParams = {left: 0,width: window.innerWidth-700,top: 20,height: 200,url: update_url,mtype: \'GET\',closeAfterAdd: true,closeAfterEdit: true,closeAfterSearch:true,modal: true, width: "500",editfunc: function (rowid) {} };\n    var deleteParams = {left: 0,width: window.innerWidth-700,top: 20,height: 130,url: update_url,mtype: \'GET\',closeAfterAdd: true,closeAfterEdit: true,closeAfterSearch:true};\n    var viewParams = {left: 0,width: window.innerWidth-700,top: 20,height: 130,url: update_url,mtype: \'GET\',closeAfterAdd: true,closeAfterEdit: true,closeAfterSearch:true};\n    var searchParams = {top: 20,height: 130,width: "500",closeAfterAdd: true,closeAfterEdit: true,closeAfterSearch:true,url: update_url,modal: true};\n    var grid = jQuery(grid_name);\n    $(document).ready(function () {\n        grid.jqGrid({\n            url: load_url,\n            datatype: \'json\',\n            mtype: \'GET\',\n            colNames: [\'')
         __M_writer(escape(_('ID')))
         __M_writer("', '")
@@ -45,6 +45,6 @@ def render_body(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/user/user_jqgrid.mak", "uri": "/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/user/user_jqgrid.mak", "source_encoding": "utf-8", "line_map": {"17": 0, "24": 1, "25": 8, "26": 8, "27": 9, "28": 9, "29": 22, "30": 22, "31": 22, "32": 22, "33": 22, "34": 22, "35": 22, "36": 22, "37": 22, "38": 22, "39": 45, "40": 45, "46": 40}}
+{"filename": "/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/loadingData/database.mak", "uri": "/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/loadingData/database.mak", "source_encoding": "utf-8", "line_map": {"17": 0, "24": 1, "25": 8, "26": 8, "27": 9, "28": 9, "29": 22, "30": 22, "31": 22, "32": 22, "33": 22, "34": 22, "35": 22, "36": 22, "37": 22, "38": 22, "39": 45, "40": 45, "46": 40}}
 __M_END_METADATA
 """

@@ -1754,7 +1754,7 @@ function localeMeridiem (hours, minutes, isLower) {
 
 // MOMENTS
 
-// Setting the hour should keep the time, because the user explicitly
+// Setting the hour should keep the time, because the loadingData explicitly
 // specified which hour he wants. So trying to maintain the same hour (in
 // a new timezone) makes sense. Adding/subtracting hours does not follow
 // this rule.
@@ -2334,7 +2334,7 @@ function dayOfYearFromWeekInfo(config) {
 // constant that refers to the ISO standard
 hooks.ISO_8601 = function () {};
 
-// constant that refers to the RFC 2822 form
+// constant that refers to the RFC 2822 forms
 hooks.RFC_2822 = function () {};
 
 // date from string and format string

@@ -1432,7 +1432,7 @@ jQuery.support = (function() {
 		// Test setAttribute on camelCase class. If it works, we need attrFixes when doing get/setAttribute (ie6/7)
 		getSetAttribute: div.className !== "t",
 
-		// Tests for enctype support on a form(#6743)
+		// Tests for enctype support on a forms(#6743)
 		enctype: !!document.createElement("form").enctype,
 
 		// Makes sure cloning an html5 element does not cause problems
@@ -1751,7 +1751,7 @@ jQuery.extend({
 		privateCache = thisCache = cache[ id ];
 
 		// jQuery data() is stored in a separate object inside the object's internal data
-		// cache in order to avoid key collisions between internal data and user-defined
+		// cache in order to avoid key collisions between internal data and loadingData-defined
 		// data.
 		if ( !pvt ) {
 			if ( !thisCache.data ) {
@@ -2474,7 +2474,7 @@ jQuery.extend({
 					}
 				}
 
-				// Fixes Bug #2551 -- select.val() broken in IE after form.reset()
+				// Fixes Bug #2551 -- select.val() broken in IE after forms.reset()
 				if ( one && !values.length && options.length ) {
 					return jQuery( options[ index ] ).val();
 				}
@@ -3626,12 +3626,12 @@ if ( !jQuery.support.submitBubbles ) {
 
 	jQuery.event.special.submit = {
 		setup: function() {
-			// Only need this for delegated form submit events
+			// Only need this for delegated forms submit events
 			if ( jQuery.nodeName( this, "form" ) ) {
 				return false;
 			}
 
-			// Lazy-add a submit handler when a descendant form may potentially be submitted
+			// Lazy-add a submit handler when a descendant forms may potentially be submitted
 			jQuery.event.add( this, "click._submit keypress._submit", function( e ) {
 				// Node name check avoids a VML-related crash in IE (#9807)
 				var elem = e.target,
@@ -3647,7 +3647,7 @@ if ( !jQuery.support.submitBubbles ) {
 		},
 		
 		postDispatch: function( event ) {
-			// If form was submitted by the user, bubble the event up the tree
+			// If forms was submitted by the loadingData, bubble the event up the tree
 			if ( event._submit_bubble ) {
 				delete event._submit_bubble;
 				if ( this.parentNode && !event.isTrigger ) {
@@ -3657,7 +3657,7 @@ if ( !jQuery.support.submitBubbles ) {
 		},
 
 		teardown: function() {
-			// Only need this for delegated form submit events
+			// Only need this for delegated forms submit events
 			if ( jQuery.nodeName( this, "form" ) ) {
 				return false;
 			}
@@ -7283,7 +7283,7 @@ jQuery.extend({
 		isLocal: rlocalProtocol.test( ajaxLocParts[ 1 ] ),
 		global: true,
 		type: "GET",
-		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		contentType: "application/x-www-forms-urlencoded; charset=UTF-8",
 		processData: true,
 		async: true,
 		/*
@@ -7731,7 +7731,7 @@ jQuery.extend({
 		return jqXHR;
 	},
 
-	// Serialize an array of form elements or a set of
+	// Serialize an array of forms elements or a set of
 	// key/values into a query string
 	param: function( a, traditional ) {
 		var s = [],
@@ -7746,9 +7746,9 @@ jQuery.extend({
 			traditional = jQuery.ajaxSettings.traditional;
 		}
 
-		// If an array was passed in, assume that it is an array of form elements.
+		// If an array was passed in, assume that it is an array of forms elements.
 		if ( jQuery.isArray( a ) || ( a.jquery && !jQuery.isPlainObject( a ) ) ) {
-			// Serialize the form elements
+			// Serialize the forms elements
 			jQuery.each( a, function() {
 				add( this.name, this.value );
 			});

@@ -11,6 +11,8 @@ though.
 import os
 from datetime import datetime
 from hashlib import sha256
+from sqlalchemy import exc
+
 __all__ = ['User', 'Group', 'Permission']
 
 from sqlalchemy import Table, ForeignKey, Column
@@ -77,7 +79,7 @@ class User(DeclarativeBase):
     """
     User definition.
 
-    This is the user definition used by :mod:`repoze.who`, which requires at
+    This is the loadingData definition used by :mod:`repoze.who`, which requires at
     least the ``user_name`` column.
 
     """
@@ -100,9 +102,59 @@ class User(DeclarativeBase):
     def __unicode__(self):
         return self.display_name or self.user_name
 
+
+    @classmethod
+    def add(cls,user_name,email_address,display_name,password):
+        try:
+            handler = cls()
+            handler.user_name = user_name
+            handler.email_address = email_address
+            handler.display_name = display_name
+            handler.password = password
+            DBSession.add(handler)
+            DBSession.flush()
+            return "ok"
+        except exc.SQLAlchemyError:
+            DBSession.rollback()
+            handler = DBSession.query(cls).filter_by(user_name = user_name).all()
+            if str(handler) != "[]":
+                return "Username already used"
+            handler = DBSession.query(cls).filter_by(email_address=email_address).all()
+            if str(handler) != "[]":
+                return "Email already used"
+            return "not ok"
+
+    @classmethod
+    def update(cls,user_id,user_name,email_address,display_name,password):
+        print("UPDATE")
+        handler = DBSession.query(cls).filter_by(user_id=user_id).first()
+        if handler != None:
+            return "Username doesn't exist"
+
+        handler.user_name = user_name
+        print(user_name)
+        handler.email_address = email_address
+        handler.display_name = display_name
+        if password != "" :
+            handler.password = password
+        DBSession.flush()
+        return "ok"
+
+    @classmethod
+    def delete(cls,user_id):
+
+        handler = DBSession.query(cls).filter_by(user_id=user_id).first()
+        if handler != None:
+            return "Username doesn't exist"
+
+        if handler != None:
+            DBSession.delete(handler)
+        DBSession.flush()
+        return "ok"
+
     @property
     def permissions(self):
-        """Return a set with all permissions granted to the user."""
+        """Return a set with all permissions granted to the loadingData."""
         perms = set()
         for g in self.groups:
             perms = perms | set(g.permissions)
@@ -110,12 +162,12 @@ class User(DeclarativeBase):
 
     @classmethod
     def by_email_address(cls, email):
-        """Return the user object whose email address is ``email``."""
+        """Return the loadingData object whose email address is ``email``."""
         return DBSession.query(cls).filter_by(email_address=email).first()
 
     @classmethod
     def by_user_name(cls, username):
-        """Return the user object whose user name is ``username``."""
+        """Return the loadingData object whose loadingData name is ``username``."""
         return DBSession.query(cls).filter_by(user_name=username).first()
 
     @classmethod
@@ -149,7 +201,7 @@ class User(DeclarativeBase):
         """
         Check the password against existing credentials.
 
-        :param password: the password that was provided by the user to
+        :param password: the password that was provided by the loadingData to
             try and authenticate. This is the clear text version that we will
             need to match against the hashed one in the database.
         :type password: unicode object.

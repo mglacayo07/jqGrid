@@ -26,17 +26,17 @@ class TestAuthentication(TestController):
         """Anonymous users are forced to login
 
         Test that anonymous users are automatically redirected to the login
-        form when authorization is denied. Next, upon successful login they
+        forms when authorization is denied. Next, upon successful login they
         should be redirected to the initially requested page.
 
         """
         # Requesting a protected area
         resp = self.app.get('/admin/', status=302)
         ok_(resp.location.startswith('http://localhost/login'))
-        # Getting the login form:
+        # Getting the login forms:
         resp = resp.follow(status=200)
         form = resp.form
-        # Submitting the login form:
+        # Submitting the login forms:
         form['login'] = 'manager'
         form['password'] = 'managepass'
         post_login = form.submit(status=302)
@@ -50,10 +50,10 @@ class TestAuthentication(TestController):
 
     def test_voluntary_login(self):
         """Voluntary logins must work correctly"""
-        # Going to the login form voluntarily:
+        # Going to the login forms voluntarily:
         resp = self.app.get('/login', status=200)
         form = resp.form
-        # Submitting the login form:
+        # Submitting the login forms:
         form['login'] = 'manager'
         form['password'] = 'managepass'
         post_login = form.submit(status=302)
@@ -83,7 +83,7 @@ class TestAuthentication(TestController):
         eq_(home_page.location, 'http://localhost/')
 
     def test_failed_login_keeps_username(self):
-        """Wrong password keeps user_name in login form"""
+        """Wrong password keeps user_name in login forms"""
         resp = self.app.get('/login_handler?login=manager&password=badpassword',
                             status=302)
         resp = resp.follow(status=200)
