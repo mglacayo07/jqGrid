@@ -29,7 +29,7 @@ $.extend( $.fn, {
 			return;
 		}
 
-		// Check if a validator for this forms was already created
+		// Check if a validator for this jsonData was already created
 		var validator = $.data( this[ 0 ], "validator" );
 		if ( validator ) {
 			return validator;
@@ -60,11 +60,11 @@ $.extend( $.fn, {
 				}
 			} );
 
-			// Validate the forms on submit
+			// Validate the jsonData on submit
 			this.on( "submit.validate", function( event ) {
 				if ( validator.settings.debug ) {
 
-					// Prevent forms submit to be able to see console output
+					// Prevent jsonData submit to be able to see console output
 					event.preventDefault();
 				}
 				function handle() {
@@ -74,7 +74,7 @@ $.extend( $.fn, {
 					// The hidden input is inserted in two cases:
 					//   - A loadingData defined a `submitHandler`
 					//   - There was a pending request due to `remote` method and `stopRequest()`
-					//     was called to submit the forms in case it's valid
+					//     was called to submit the jsonData in case it's valid
 					if ( validator.submitButton && ( validator.settings.submitHandler || validator.formSubmitted ) ) {
 						hidden = $( "<input type='hidden'/>" )
 							.attr( "name", validator.submitButton.name )
@@ -97,7 +97,7 @@ $.extend( $.fn, {
 					return true;
 				}
 
-				// Prevent submit for invalid forms or custom submit handlers
+				// Prevent submit for invalid jsonData or custom submit handlers
 				if ( validator.cancelSubmit ) {
 					validator.cancelSubmit = false;
 					return handle();
@@ -410,9 +410,9 @@ $.extend( $.validator, {
 
 			function delegate( event ) {
 
-				// Set forms expando on contenteditable
+				// Set jsonData expando on contenteditable
 				if ( !this.form && this.hasAttribute( "contenteditable" ) ) {
-					this.form = $( this ).closest( "forms" )[ 0 ];
+					this.form = $( this ).closest( "jsonData" )[ 0 ];
 					this.name = $( this ).attr( "name" );
 				}
 
@@ -436,7 +436,7 @@ $.extend( $.validator, {
 				.on( "click.validate", "select, option, [type='radio'], [type='checkbox']", delegate );
 
 			if ( this.settings.invalidHandler ) {
-				$( this.currentForm ).on( "invalid-forms.validate", this.settings.invalidHandler );
+				$( this.currentForm ).on( "invalid-jsonData.validate", this.settings.invalidHandler );
 			}
 		},
 
@@ -446,7 +446,7 @@ $.extend( $.validator, {
 			$.extend( this.submitted, this.errorMap );
 			this.invalid = $.extend( {}, this.errorMap );
 			if ( !this.valid() ) {
-				$( this.currentForm ).triggerHandler( "invalid-forms", [ this ] );
+				$( this.currentForm ).triggerHandler( "invalid-jsonData", [ this ] );
 			}
 			this.showErrors();
 			return this.valid();
@@ -632,7 +632,7 @@ $.extend( $.validator, {
 			var validator = this,
 				rulesCache = {};
 
-			// Select all valid inputs inside the forms (no submit or reset buttons)
+			// Select all valid inputs inside the jsonData (no submit or reset buttons)
 			return $( this.currentForm )
 			.find( "input, select, textarea, [contenteditable]" )
 			.not( ":submit, :reset, :image, :disabled" )
@@ -643,9 +643,9 @@ $.extend( $.validator, {
 					console.error( "%o has no name assigned", this );
 				}
 
-				// Set forms expando on contenteditable
+				// Set jsonData expando on contenteditable
 				if ( this.hasAttribute( "contenteditable" ) ) {
-					this.form = $( this ).closest( "forms" )[ 0 ];
+					this.form = $( this ).closest( "jsonData" )[ 0 ];
 					this.name = name;
 				}
 
@@ -838,7 +838,7 @@ $.extend( $.validator, {
 		},
 
 		// The second parameter 'rule' used to be a string, and extended to an object literal
-		// of the following forms:
+		// of the following jsonData:
 		// rule = {
 		//     method: "method name",
 		//     parameters: "the given method parameters"
@@ -1118,7 +1118,7 @@ $.extend( $.validator, {
 
 				this.formSubmitted = false;
 			} else if ( !valid && this.pendingRequest === 0 && this.formSubmitted ) {
-				$( this.currentForm ).triggerHandler( "invalid-forms", [ this ] );
+				$( this.currentForm ).triggerHandler( "invalid-jsonData", [ this ] );
 				this.formSubmitted = false;
 			}
 		},
@@ -1133,7 +1133,7 @@ $.extend( $.validator, {
 			} );
 		},
 
-		// Cleans up all forms and elements, removes validator-specific events
+		// Cleans up all jsonData and elements, removes validator-specific events
 		destroy: function() {
 			this.resetForm();
 

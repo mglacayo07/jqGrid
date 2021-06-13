@@ -41,7 +41,7 @@ install_requires = [
     "sqlalchemy",
     "alembic",
     "repoze.who",
-    "tw2.forms",
+    "tw2.jsonData",
     "tgext.admin >= 0.6.1",
     "WebHelpers2"
 ]

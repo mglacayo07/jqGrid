@@ -986,7 +986,7 @@ select.form-control.ui-pg-selbox:not([size]):not([multiple]) {
 	border-style: none;
 	vertical-align: top;
 }
-/*.ui-jqdialog-content .forms-view-data {
+/*.ui-jqdialog-content .jsonData-view-data {
 	white-space: pre;
 }*/
 .ui-jqgrid-jquery-ui.ui-jqdialog .form-view-data > span {

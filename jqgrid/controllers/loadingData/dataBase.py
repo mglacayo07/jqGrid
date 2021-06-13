@@ -9,10 +9,9 @@ class DataBaseController(BaseController):
     def __init__(self):
         pass
 
-    @expose('jqgrid.templates.loadingData.database')
+    @expose('jqgrid.templates.loadingData.dataBase.index')
     def index(self, **kw):
-        print("ENTR")
-        return dict(page='databaseErr')
+        return dict(page='index')
 
     @expose('json')
     def loadGrid(self, **kw):
@@ -30,7 +29,7 @@ class DataBaseController(BaseController):
             kw['user'] = User()
         else:
             kw['user'] = DBSession.query(User).filter_by(user_id=kw['user_id']).first()
-        dialogtemplate = render_template(kw, "mako", 'jqgrid.templates.loadingData.forms.databaseAddUser')
+        dialogtemplate = render_template(kw, "mako", 'jqgrid.templates.loadingData.form')
         return dict(dialogtemplate=dialogtemplate)
 
     @expose('json')
@@ -41,8 +40,8 @@ class DataBaseController(BaseController):
             return dict(error=new_user)
         else:
             if kw['action'] == "update":
+                print("UPDATE")
                 user = User.update(kw['user_id'],kw['user_name'].lower(),kw['email_address'],kw['display_name'],kw['password'])
             if kw['action'] == "delete":
-                print("BORRAR")
                 user = User.delete(kw['user_id'])
             return dict(error=user)

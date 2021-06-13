@@ -14,7 +14,8 @@ from tgext.admin.controller import AdminController
 from jqgrid.lib.base import BaseController
 from jqgrid.controllers.error import ErrorController
 
-from jqgrid.controllers.loadingData.database import DataBaseController
+from jqgrid.controllers.loadingData.dataBase import DataBaseController
+from jqgrid.controllers.loadingData.jsonData import jsonDataController
 __all__ = ['RootController']
 
 
@@ -38,6 +39,7 @@ class RootController(BaseController):
     error = ErrorController()
 
     dataBase = DataBaseController()
+    jsonData = jsonDataController()
 
     def _before(self, *args, **kw):
         tmpl_context.project_name = "jqgrid"

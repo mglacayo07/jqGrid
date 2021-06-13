@@ -2328,7 +2328,7 @@ function dayOfYearFromWeekInfo(config) {
 // constant that refers to the ISO standard
 hooks.ISO_8601 = function () {};
 
-// constant that refers to the RFC 2822 forms
+// constant that refers to the RFC 2822 jsonData
 hooks.RFC_2822 = function () {};
 
 // date from string and format string
@@ -10856,7 +10856,7 @@ hooks.defineLocale('pl', {
             return monthsNominative;
         } else if (format === '') {
             // Hack: if format empty we know this is used to generate
-            // RegExp by moment. Give then back both valid forms of months
+            // RegExp by moment. Give then back both valid jsonData of months
             // in RegExp ready format.
             return '(' + monthsSubjective[momentToFormat.month()] + '|' + monthsNominative[momentToFormat.month()] + ')';
         } else if (/D MMMM/.test(format)) {

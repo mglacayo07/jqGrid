@@ -2334,7 +2334,7 @@ function dayOfYearFromWeekInfo(config) {
 // constant that refers to the ISO standard
 hooks.ISO_8601 = function () {};
 
-// constant that refers to the RFC 2822 forms
+// constant that refers to the RFC 2822 jsonData
 hooks.RFC_2822 = function () {};
 
 // date from string and format string

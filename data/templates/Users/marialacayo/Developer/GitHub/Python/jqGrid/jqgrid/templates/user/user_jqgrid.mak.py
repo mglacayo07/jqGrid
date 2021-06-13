@@ -7,8 +7,8 @@ __M_locals_builtin = locals
 _magic_number = 10
 _modified_time = 1622298001.69177
 _enable_loop = True
-_template_filename = '/jqgrid/templates/loadingData/database.mak'
-_template_uri = '/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/loadingData/database.mak'
+_template_filename = '/jqgrid/templates/loadingData/index.mak'
+_template_uri = '/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/loadingData/index.mak'
 _source_encoding = 'utf-8'
 from markupsafe import escape_silent as escape
 _exports = []
@@ -45,6 +45,6 @@ def render_body(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/loadingData/database.mak", "uri": "/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/loadingData/database.mak", "source_encoding": "utf-8", "line_map": {"17": 0, "24": 1, "25": 8, "26": 8, "27": 9, "28": 9, "29": 22, "30": 22, "31": 22, "32": 22, "33": 22, "34": 22, "35": 22, "36": 22, "37": 22, "38": 22, "39": 45, "40": 45, "46": 40}}
+{"filename": "/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/loadingData/index.mak", "uri": "/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/loadingData/index.mak", "source_encoding": "utf-8", "line_map": {"17": 0, "24": 1, "25": 8, "26": 8, "27": 9, "28": 9, "29": 22, "30": 22, "31": 22, "32": 22, "33": 22, "34": 22, "35": 22, "36": 22, "37": 22, "38": 22, "39": 45, "40": 45, "46": 40}}
 __M_END_METADATA
 """

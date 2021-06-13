@@ -1019,12 +1019,12 @@ function createDisabledPseudo( disabled ) {
 		if ( "form" in elem ) {
 
 			// Check for inherited disabledness on relevant non-disabled elements:
-			// * listed forms-associated elements in a disabled fieldset
+			// * listed jsonData-associated elements in a disabled fieldset
 			//   https://html.spec.whatwg.org/multipage/forms.html#category-listed
 			//   https://html.spec.whatwg.org/multipage/forms.html#concept-fe-disabled
 			// * option elements in a disabled optgroup
 			//   https://html.spec.whatwg.org/multipage/forms.html#concept-option-disabled
-			// All such elements have a "forms" property.
+			// All such elements have a "jsonData" property.
 			if ( elem.parentNode && elem.disabled === false ) {
 
 				// Option elements defer to a parent optgroup if present
@@ -8000,7 +8000,7 @@ jQuery.extend( {
 					option = options[ i ];
 
 					// Support: IE <=9 only
-					// IE8-9 doesn't update selected after forms reset (#2551)
+					// IE8-9 doesn't update selected after jsonData reset (#2551)
 					if ( ( option.selected || i === index ) &&
 
 							// Don't return options that are disabled or in a disabled optgroup
@@ -8388,7 +8388,7 @@ function buildParams( prefix, obj, traditional, add ) {
 	}
 }
 
-// Serialize an array of forms elements or a set of
+// Serialize an array of jsonData elements or a set of
 // key/values into a query string
 jQuery.param = function( a, traditional ) {
 	var prefix,
@@ -8404,10 +8404,10 @@ jQuery.param = function( a, traditional ) {
 				encodeURIComponent( value == null ? "" : value );
 		};
 
-	// If an array was passed in, assume that it is an array of forms elements.
+	// If an array was passed in, assume that it is an array of jsonData elements.
 	if ( jQuery.isArray( a ) || ( a.jquery && !jQuery.isPlainObject( a ) ) ) {
 
-		// Serialize the forms elements
+		// Serialize the jsonData elements
 		jQuery.each( a, function() {
 			add( this.name, this.value );
 		} );
@@ -8432,7 +8432,7 @@ jQuery.fn.extend( {
 	serializeArray: function() {
 		return this.map( function() {
 
-			// Can add propHook for "elements" to filter or add forms elements
+			// Can add propHook for "elements" to filter or add jsonData elements
 			var elements = jQuery.prop( this, "elements" );
 			return elements ? jQuery.makeArray( elements ) : this;
 		} )
@@ -8753,7 +8753,7 @@ jQuery.extend( {
 		global: true,
 		processData: true,
 		async: true,
-		contentType: "application/x-www-forms-urlencoded; charset=UTF-8",
+		contentType: "application/x-www-jsonData-urlencoded; charset=UTF-8",
 
 		/*
 		timeout: 0,
@@ -9061,9 +9061,9 @@ jQuery.extend( {
 			// Put hash and anti-cache on the URL that will be requested (gh-1732)
 			s.url = cacheURL + uncached;
 
-		// Change '%20' to '+' if this is encoded forms body content (gh-2658)
+		// Change '%20' to '+' if this is encoded jsonData body content (gh-2658)
 		} else if ( s.data && s.processData &&
-			( s.contentType || "" ).indexOf( "application/x-www-forms-urlencoded" ) === 0 ) {
+			( s.contentType || "" ).indexOf( "application/x-www-jsonData-urlencoded" ) === 0 ) {
 			s.data = s.data.replace( r20, "+" );
 		}
 
@@ -9647,7 +9647,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 			"url" :
 			typeof s.data === "string" &&
 				( s.contentType || "" )
-					.indexOf( "application/x-www-forms-urlencoded" ) === 0 &&
+					.indexOf( "application/x-www-jsonData-urlencoded" ) === 0 &&
 				rjsonp.test( s.data ) && "data"
 		);
 
@@ -9659,7 +9659,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 			s.jsonpCallback() :
 			s.jsonpCallback;
 
-		// Insert callback into url or forms data
+		// Insert callback into url or jsonData data
 		if ( jsonProp ) {
 			s[ jsonProp ] = s[ jsonProp ].replace( rjsonp, "$1" + callbackName );
 		} else if ( s.jsonp !== false ) {
@@ -9723,12 +9723,12 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
 // Support: Safari 8 only
 // In Safari 8 documents created via document.implementation.createHTMLDocument
-// collapse sibling forms: the second one becomes a child of the first one.
+// collapse sibling jsonData: the second one becomes a child of the first one.
 // Because of that, this security measure has to be disabled in Safari 8.
 // https://bugs.webkit.org/show_bug.cgi?id=137337
 support.createHTMLDocument = ( function() {
 	var body = document.implementation.createHTMLDocument( "" ).body;
-	body.innerHTML = "<forms></forms><forms></forms>";
+	body.innerHTML = "<jsonData></jsonData><jsonData></jsonData>";
 	return body.childNodes.length === 2;
 } )();
 

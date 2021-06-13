@@ -126,31 +126,28 @@ class User(DeclarativeBase):
 
     @classmethod
     def update(cls,user_id,user_name,email_address,display_name,password):
-        print("UPDATE")
         handler = DBSession.query(cls).filter_by(user_id=user_id).first()
-        if handler != None:
+
+        if handler == None:
             return "Username doesn't exist"
 
         handler.user_name = user_name
-        print(user_name)
         handler.email_address = email_address
         handler.display_name = display_name
-        if password != "" :
+        if password != "":
             handler.password = password
+        print("FLUSHABLE")
         DBSession.flush()
         return "ok"
 
     @classmethod
     def delete(cls,user_id):
-
-        print("ENTRE")
         handler = DBSession.query(cls).filter_by(user_id=user_id).first()
         if handler == None:
             return "Username doesn't exist"
 
         if handler != None:
             DBSession.delete(handler)
-            print("BORRE")
         DBSession.flush()
         return "ok"
 
