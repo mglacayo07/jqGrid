@@ -26,8 +26,6 @@ class DataBaseController(BaseController):
 
     @expose('json')
     def open(self, **kw):
-        print("ENTRE")
-        print(kw)
         if kw['user_id'] == "0":
             kw['user'] = User()
         else:
@@ -37,16 +35,14 @@ class DataBaseController(BaseController):
 
     @expose('json')
     def save(self,**kw):
-        print("SAVE")
-        print("kw",kw)
         user = "ok"
         if kw['user_id'] == "0":
             new_user = User.add(kw['user_name'].lower(),kw['email_address'],kw['display_name'],kw['password'])
             return dict(error=new_user)
         else:
             if kw['action'] == "update":
-                print("HOILA",kw['user_name'].lower())
                 user = User.update(kw['user_id'],kw['user_name'].lower(),kw['email_address'],kw['display_name'],kw['password'])
             if kw['action'] == "delete":
+                print("BORRAR")
                 user = User.delete(kw['user_id'])
             return dict(error=user)

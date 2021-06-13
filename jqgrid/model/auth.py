@@ -143,12 +143,14 @@ class User(DeclarativeBase):
     @classmethod
     def delete(cls,user_id):
 
+        print("ENTRE")
         handler = DBSession.query(cls).filter_by(user_id=user_id).first()
-        if handler != None:
+        if handler == None:
             return "Username doesn't exist"
 
         if handler != None:
             DBSession.delete(handler)
+            print("BORRE")
         DBSession.flush()
         return "ok"
 

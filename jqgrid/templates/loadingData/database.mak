@@ -53,7 +53,7 @@
                 if (user_id == false){
                     $.alert("${_('No selected row')}",{type: "warning"});
                 }else{
-                    actionsDataBase(user_id,"delete")
+                    deleteDataBase(user_id,"delete");
                 }
             }
         });
@@ -86,6 +86,47 @@
     });
 </script>
 <script>
+    function deleteDataBase(rowId,action){
+        $('<div></div>').appendTo('body').html('<div><h6>Are you sure you want to delete this user?</h6></div>')
+                .dialog({
+                    modal: true, title: 'Delete', zIndex: 10000, autoOpen: true,
+                    width: 'auto', resizable: false,
+                    buttons: {
+                        Yes: function () {
+                            $.ajax({
+                                type: "GET",
+                                url: "${h.url()}/dataBase/save",
+                                contentType: "application/json; charset=utf-8",
+                                data: {
+                                    'user_id': rowId,
+                                    'action': action
+                                },
+                                success: function (data) {
+                                    // data.value is the success return json. json string contains key value
+                                    $('#jqGridDataBase').trigger('reloadGrid');
+                                },
+                                error: function () {
+                                    //alert("#"+ckbid);
+                                    $.alert("${_('Error accessing to')} /dataBase/save", {
+                                        autoClose: false,
+                                        type: "danger"
+                                    });
+                                    return true;
+                                },
+                                complete: function () {
+                                }
+                            });
+                            $(this).dialog("close");
+                        },
+                        No: function () {
+                            $(this).dialog("close");
+                        }
+                    },
+                    close: function (event, ui) {
+                        $(this).remove();
+                    }
+                });
+    }
     function actionsDataBase(rowId,action) {
 
         $.ajax({
