@@ -1,11 +1,11 @@
 <script>
     $(window).on("resize", function () {
-        var $grid = $("#jqGridjsonData"),newWidth = $grid.closest(".ui-jqgrid").parent().width();
+        var $grid = $("#jqGrid${id}"),newWidth = $grid.closest(".ui-jqgrid").parent().width();
         $grid.jqGrid("setGridWidth", newWidth, true);
     });
-    var grid_name = '#jqGridjsonData';
-    var grid_pager = '#listPagerjsonData';
-    var load_url  = "${tg.url('/jsonData/jqGridRows')}";
+    var grid_name = '#jqGrid${id}';
+    var grid_pager = '#listPager${id}';
+    var load_url  = "${h.url()}/${id}/loadGrid";
 
     var grid = jQuery(grid_name);
     $(document).ready(function () {
@@ -13,24 +13,23 @@
             url: load_url,
             datatype: 'json',
             mtype: 'GET',
-            colNames: ['${_('ID')}', '${_('User')}', '${_('Email')}', '${_('Display Name')}', '${_('Created')}'],
             colModel: [
-                {name: 'user_id',index: 'user_id', align: 'center',key:true,hidden: false,width:20, editable: false,edittype: 'text',editrules: {required: true},search:false},
-                {name: 'user_name', index: 'user_name',align: 'left',hidden: false, width:70,editable: true, edittype: 'text', editrules: {required: true}},
-                {name: 'email_address',index: 'email_address', align: 'left',hidden: false,editable: true, edittype: 'text',editrules: {required: true}},
-                {name: 'display_name',index: 'display_name',hidden:false,align: 'left',editable: true,edittype: 'date',editrules: {required: true}},
-                {name: 'created',index: 'internal_id', align: 'left',hidden: true,editable: true, edittype: 'text',editrules: {required: false}},
+                {label:'ID',name: '${key}',index: '${key}', align: 'center',key:true,hidden: false,editable: false,edittype: 'text',search:true,width:40},
+                % for item in colModel:
+                    {label:'${item['label']}',name: '${item['index']}',index: '${item['index']}', align: '${item['align']}',hidden: ${item['hidden']},editable: ${item['editable']},edittype: '${item['edittype']}',search:${item['search']}},
+                % endfor
             ],
             pager: jQuery(grid_pager),
             rowNum: 16,
             rowList: [16, 50, 100],
-            sortname: 'user_id',
-            sortorder: "asc",
+            sortname: '${key}',
+            sortorder: "${sortorder}",
             viewrecords: true,
             autowidth: true,
+            multiselect: ${multi},
             height: 250,
             ondblClickRow: function(rowId) {
-                actionsjsonData(rowId,"update")
+                actions${id}(rowId, "update")
             }
         });
         grid.jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
@@ -43,11 +42,11 @@
             position: "first",
             onClickButton: function(){
                 var selRowId = grid.jqGrid ('getGridParam', 'selrow');
-                var user_id = grid.jqGrid('getCell',selRowId,'user_id');
-                if (user_id == false){
+                var id = grid.jqGrid('getCell',selRowId,'${key}');
+                if (id == false){
                     $.alert("${_('No selected row')}",{type: "warning"});
                 }else{
-                    deletejsonData(user_id,"delete");
+                    deleteRow${id}(id, "delete");
                 }
             }
         });
@@ -59,11 +58,11 @@
             position: "first",
             onClickButton: function(){
                 var selRowId = grid.jqGrid ('getGridParam', 'selrow');
-                var user_id = grid.jqGrid('getCell',selRowId,'user_id');
-                if (user_id == false){
+                var id = grid.jqGrid('getCell',selRowId,'${key}');
+                if (id == false){
                     $.alert("${_('No selected row')}",{type: "warning"});
                 }else{
-                    actionsjsonData(user_id,"update")
+                    actions${id}(id, "update")
                 }
             }
         });
@@ -74,13 +73,13 @@
             caption: "${_('Add')}",
             position: "first",
             onClickButton: function(){
-                actionsjsonData(0,"add")
+                actions${id}(0,"add")
             }
         });
     });
 </script>
 <script>
-    function deletejsonData(rowId,action){
+    function deleteRow${id} (rowId,action){
         $('<div></div>').appendTo('body').html('<div><h6>Are you sure you want to delete this user?</h6></div>')
                 .dialog({
                     modal: true, title: 'Delete', zIndex: 10000, autoOpen: true,
@@ -89,19 +88,19 @@
                         Yes: function () {
                             $.ajax({
                                 type: "GET",
-                                url: "${h.url()}/jsonData/save",
+                                url: "${h.url()}/${id}/save",
                                 contentType: "application/json; charset=utf-8",
                                 data: {
-                                    'user_id': rowId,
+                                    '${key}_${id}': rowId,
                                     'action': action
                                 },
                                 success: function (data) {
                                     // data.value is the success return json. json string contains key value
-                                    $('#jqGridjsonData').trigger('reloadGrid');
+                                    $('#jqGrid${id}').trigger('reloadGrid');
                                 },
                                 error: function () {
                                     //alert("#"+ckbid);
-                                    $.alert("${_('Error accessing to')} /jsonData/save", {
+                                    $.alert("${_('Error accessing to')} /${id}/save", {
                                         autoClose: false,
                                         type: "danger"
                                     });
@@ -121,91 +120,71 @@
                     }
                 });
     }
-    function actionsjsonData(rowId,action) {
+    function actions${id}(rowId,action) {
 
         $.ajax({
             type: "GET",
-            url: "${tg.url('/jsonData/open')}",
+            url: "${h.url()}${id}/open",
             contentType: "application/json; charset=utf-8",
-            data: {'user_id':rowId},
+            data: {'${key}':rowId},
             success: function (parameterdata) {
                 //Insert HTML code
-                $("#dialogjsonData").html(parameterdata.dialogtemplate);
-                $("#dialogjsonData").show();
-
-                $("#formLoadingData").validate({
-                    rules: {
-                        user_name_loading_data: {
-                            required: true, maxlength: 16
-                        },
-                        email_address_loading_data: {
-                            required: true, maxlength: 255
-                        },
-                        display_name_loading_data: {
-                            required: true, maxlength: 255
-                        }
-                    }
-                });
+                $("#dialog${id}").html(parameterdata.dialogtemplate);
+                $("#dialog${id}").show();
             },
             error: function () {
-                $.alert("${_('Error accessing server')} /jsonData/jsonData", {type: "danger"});
+                $.alert("${_('Error accessing server')} /${id}/open", {type: "danger"});
             },
             complete: function () {
             }
         });
 
-        var ContDialog = $("#dialogjsonData").dialog({
+        var ContDialog = $("#dialog${id}").dialog({
             autoOpen: false,
             height: Math.round(window.innerHeight * .52),
             width: Math.round(window.innerWidth * .35),
             modal: true,
             buttons: {
                 "${_('Add')}": function () {
-                    if ($("#formLoadingData").valid()) {
-                        var user_id = $('#user_id_loading_data').val();
-                        var user_name = $('#user_name_loading_data').val();
-                        var email_address = $('#email_address_loading_data').val();
-                        var display_name = $('#display_name_loading_data').val();
-                        var password = $('#password_loading_data').val();
+                    if ($("#form${id}").valid()) {
+                        var info = $('#form${id}').serialize();
                         $.ajax({
                             type: "GET",
-                            url: "${h.url()}/jsonData/save",
+                            url: "${h.url()}${id}/save?"+info,
                             contentType: "application/json; charset=utf-8",
-                            data: {'user_id': user_id,'action':action,'user_name': user_name,'email_address': email_address,'display_name': display_name,'password': password},
+                            data: {'action':action},
                             success: function (data) {
                                 // data.value is the success return json. json string contains key value
-                                $('#jqGridjsonData').trigger('reloadGrid');
+                                $('#jqGrid${id}').trigger('reloadGrid');
                             },
                             error: function () {
                                 //alert("#"+ckbid);
-                                $.alert("${_('Error accessing to')} /jsonData/save", {autoClose: false, type: "danger"});
+                                $.alert("${_('Error accessing to')} /${id}/save", {autoClose: false, type: "danger"});
                                 return true;
                             },
                             complete: function () {
                             }
                         });
-                        $('#formLoadingData')[0].reset();
+                        $('#form${id}')[0].reset();
                         ContDialog.dialog("close");
                     }
                 },
                 "${_('Close')}": function () {
-                    $('#formLoadingData')[0].reset();
+                    $('#form${id}')[0].reset();
                     ContDialog.dialog("close");
                 }
             },
             close: function () {
-                $('#formLoadingData')[0].reset();
+                $('#form${id}')[0].reset();
             }
         });
 
         ContDialog.dialog("open");
     }
 </script>
-
-
-<div id="dialogjsonData"  title="${_('jsonData')}"></div>
+<div id="dialog${id}"  title="${id}"></div>
 
 <table style="width:100%">
-    <table id="jqGridjsonData" class="scroll" cellpadding="0" cellspacing="0"></table>
-    <div id="listPagerjsonData" class="scroll" style="text-align:center;"></div>
+    <table id="jqGrid${id}" class="scroll" cellpadding="0" cellspacing="0"></table>
+    <div id="listPager${id}" class="scroll" style="text-align:center;"></div>
 </table>

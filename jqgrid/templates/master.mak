@@ -205,7 +205,12 @@ ${self.bottom_scripts()}
                       <ul class="dropdown-menu">
                         <li><button class="sonMenu" onclick="openTab('${_('Data Base')}','${tg.url('/dataBase')}')" title="Data Base">${_('Data Base')}</button></li>
                         <li><button class="sonMenu" onclick="openTab('${_('JSON')}','${tg.url('/jsonData')}')" title="JSON">${_('JSON')}</button></li>
-                        <li><a href="#">JavaScript</a></li>
+                      </ul>
+                    </div>
+                    <div class="dropdown">
+                      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Advanced <span class="caret"></span></button>
+                      <ul class="dropdown-menu">
+                        <li><button class="sonMenu" onclick="openTab('${_('Multi Select')}','${tg.url('/multiselect')}')" title="Multi Select">${_('Multi Select')}</button></li>
                       </ul>
                     </div>
               </div>

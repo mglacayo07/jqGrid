@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1623554539.7923698
+_modified_time = 1624067246.4771378
 _enable_loop = True
 _template_filename = '/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/master.mak'
 _template_uri = '/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/master.mak'
@@ -18,9 +18,9 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        self = context.get('self', UNDEFINED)
-        _ = context.get('_', UNDEFINED)
         tg = context.get('tg', UNDEFINED)
+        _ = context.get('_', UNDEFINED)
+        self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('<!DOCTYPE html>\n<html>\n<head>\n    ')
         __M_writer(escape(self.meta()))
@@ -131,9 +131,9 @@ def render_body_class(context):
 def render_main_menu(context):
     __M_caller = context.caller_stack._push_frame()
     try:
-        self = context.get('self', UNDEFINED)
-        _ = context.get('_', UNDEFINED)
         tg = context.get('tg', UNDEFINED)
+        _ = context.get('_', UNDEFINED)
+        self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n  <!-- INSERT MAIN MENU -->\n<nav>\n      <table style="width: 100%"  class=" ui-tabs-panel ui-corner-bottom ui-widget-content">\n          <td>\n              <ul class="nav nav-tabs ui-widget-header">\n                  <li class=active><a href="#pl11" aria-expanded=&#34;true&#34;>jqGrids Examples</a></li>\n              </ul>\n              <div class="tab-content ui-tabs-panel ui-corner-bottom ui-widget-content">\n                    <div class="dropdown">\n                      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Loading Data <span class="caret"></span></button>\n                      <ul class="dropdown-menu">\n                        <li><button class="sonMenu" onclick="openTab(\'')
         __M_writer(escape(_('Data Base')))
@@ -147,7 +147,13 @@ def render_main_menu(context):
         __M_writer(escape(tg.url('/jsonData')))
         __M_writer('\')" title="JSON">')
         __M_writer(escape(_('JSON')))
-        __M_writer('</button></li>\n                        <li><a href="#">JavaScript</a></li>\n                      </ul>\n                    </div>\n              </div>\n          </td>\n      </table>\n</nav>\n      <div id="tabs">\n          <ul class="nav nav-tabs ui-widget-header main1">\n            <li class="main1"><a href="#tabs-1" >Main</a></li>\n          </ul>\n          <div id="tabs-1" align="center">\n            ')
+        __M_writer('</button></li>\n                      </ul>\n                    </div>\n                    <div class="dropdown">\n                      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Advanced <span class="caret"></span></button>\n                      <ul class="dropdown-menu">\n                        <li><button class="sonMenu" onclick="openTab(\'')
+        __M_writer(escape(_('Multi Select')))
+        __M_writer("','")
+        __M_writer(escape(tg.url('/multiselect')))
+        __M_writer('\')" title="Multi Select">')
+        __M_writer(escape(_('Multi Select')))
+        __M_writer('</button></li>\n                      </ul>\n                    </div>\n              </div>\n          </td>\n      </table>\n</nav>\n      <div id="tabs">\n          <ul class="nav nav-tabs ui-widget-header main1">\n            <li class="main1"><a href="#tabs-1" >Main</a></li>\n          </ul>\n          <div id="tabs-1" align="center">\n            ')
         __M_writer(escape(self.content_wrapper()))
         __M_writer('\n          </div>\n      </div>\n    <!-- End MENU -->\n\n\n')
         return ''
@@ -158,9 +164,9 @@ def render_main_menu(context):
 def render_content_wrapper(context):
     __M_caller = context.caller_stack._push_frame()
     try:
-        self = context.get('self', UNDEFINED)
         tg = context.get('tg', UNDEFINED)
         str = context.get('str', UNDEFINED)
+        self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n  ')
 
@@ -205,6 +211,6 @@ def render_bottom_scripts(context):
 
 """
 __M_BEGIN_METADATA
-{"filename": "/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/master.mak", "uri": "/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/master.mak", "source_encoding": "utf-8", "line_map": {"17": 0, "25": 1, "26": 4, "27": 4, "28": 6, "29": 6, "30": 7, "31": 7, "32": 8, "33": 8, "34": 10, "35": 10, "36": 11, "37": 11, "38": 14, "39": 14, "40": 16, "41": 16, "42": 17, "43": 17, "44": 21, "45": 21, "46": 22, "47": 22, "48": 23, "49": 23, "50": 24, "51": 24, "52": 25, "53": 25, "54": 26, "55": 26, "56": 27, "57": 27, "58": 28, "59": 28, "60": 29, "61": 29, "62": 137, "63": 137, "64": 141, "65": 141, "66": 150, "67": 150, "68": 174, "69": 174, "70": 177, "71": 177, "72": 178, "73": 178, "74": 179, "75": 179, "76": 180, "77": 180, "78": 186, "79": 188, "80": 190, "81": 192, "82": 226, "83": 237, "84": 246, "90": 182, "95": 182, "96": 183, "97": 183, "103": 188, "107": 188, "113": 190, "122": 192, "131": 194, "138": 194, "139": 206, "140": 206, "141": 206, "142": 206, "143": 206, "144": 206, "145": 207, "146": 207, "147": 207, "148": 207, "149": 207, "150": 207, "151": 220, "152": 220, "158": 229, "165": 229, "166": 230, "167": 231, "168": 232, "169": 233, "170": 232, "171": 233, "172": 234, "173": 234, "174": 234, "175": 236, "176": 236, "177": 236, "183": 239, "188": 239, "189": 243, "190": 243, "196": 248, "200": 248, "206": 200}}
+{"filename": "/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/master.mak", "uri": "/Users/marialacayo/Developer/GitHub/Python/jqGrid/jqgrid/templates/master.mak", "source_encoding": "utf-8", "line_map": {"17": 0, "25": 1, "26": 4, "27": 4, "28": 6, "29": 6, "30": 7, "31": 7, "32": 8, "33": 8, "34": 10, "35": 10, "36": 11, "37": 11, "38": 14, "39": 14, "40": 16, "41": 16, "42": 17, "43": 17, "44": 21, "45": 21, "46": 22, "47": 22, "48": 23, "49": 23, "50": 24, "51": 24, "52": 25, "53": 25, "54": 26, "55": 26, "56": 27, "57": 27, "58": 28, "59": 28, "60": 29, "61": 29, "62": 137, "63": 137, "64": 141, "65": 141, "66": 150, "67": 150, "68": 174, "69": 174, "70": 177, "71": 177, "72": 178, "73": 178, "74": 179, "75": 179, "76": 180, "77": 180, "78": 186, "79": 188, "80": 190, "81": 192, "82": 231, "83": 242, "84": 251, "90": 182, "95": 182, "96": 183, "97": 183, "103": 188, "107": 188, "113": 190, "122": 192, "131": 194, "138": 194, "139": 206, "140": 206, "141": 206, "142": 206, "143": 206, "144": 206, "145": 207, "146": 207, "147": 207, "148": 207, "149": 207, "150": 207, "151": 213, "152": 213, "153": 213, "154": 213, "155": 213, "156": 213, "157": 225, "158": 225, "164": 234, "171": 234, "172": 235, "173": 236, "174": 237, "175": 238, "176": 237, "177": 238, "178": 239, "179": 239, "180": 239, "181": 241, "182": 241, "183": 241, "189": 244, "194": 244, "195": 248, "196": 248, "202": 253, "206": 253, "212": 206}}
 __M_END_METADATA
 """

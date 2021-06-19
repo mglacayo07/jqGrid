@@ -1,9 +1,10 @@
 from jqgrid.lib.base import BaseController
 from jqgrid.model import DBSession, User
 from tg import expose
+from jqgrid.lib.jqgrid import jqgridDataGrabber
 from tg import render_template
 
-class JsonDataController(BaseController):
+class MultiSelectController(BaseController):
 
     def __init__(self):
         pass
@@ -13,8 +14,8 @@ class JsonDataController(BaseController):
         colModel = self.colModel(**kw)
         params = dict(
             page = 'index',
-            id = "jsonData",
-            multi = "false",
+            id = "multiselect",
+            multi = "true",
             key = "user_id",
             sortorder = "asc",
             colModel = colModel
@@ -27,7 +28,7 @@ class JsonDataController(BaseController):
             {"label": "User Name","index":"user_name","align":"left","hidden":"false","editable":"true","edittype":"text","search":"true"},
             {"label": "Email Adress", "index": "email_address","align":"left","hidden":"false","editable":"true","edittype":"text","search":"true"},
             {"label": "Display Name", "index": "display_name","align":"left","hidden":"false","editable":"true","edittype":"text","search":"true"},
-            {"label": "Created", "index": "created", "align": "center", "hidden": "false", "editable": "true","edittype":"text","search":"true"}
+            {"label": "Created", "index": "created","align":"center","hidden":"false","editable":"true","edittype":"text","search":"true"}
         ]
         return colModel
 
@@ -41,7 +42,7 @@ class JsonDataController(BaseController):
 
     @expose('json')
     def open(self, **kw):
-        kw['id'] = "jsonData"
+        kw['id'] = "multiselect"
         if kw['user_id'] == "0":
             kw['user'] = User()
         else:
@@ -52,7 +53,7 @@ class JsonDataController(BaseController):
     @expose('json')
     def save(self,**kw):
         user = "ok"
-        id = "_jsonData"
+        id = "_multiselect"
         if kw['user_id'+id] == "0":
             new_user = User.add(kw['user_name'+id].lower(),kw['email_address'+id],kw['display_name'+id],kw['password'+id])
             return dict(error=new_user)
